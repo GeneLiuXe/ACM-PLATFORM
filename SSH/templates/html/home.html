@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ACM训练管理平台</title>
+    <link rel="stylesheet" href="{{static_url("bs/css/bootstrap.css")}}">
+    <!--<link rel="stylesheet" type="text/css" href="{{static_url("bs/css/b_dataTables_bootstrap_min.css")}}">-->
+    <link rel="shortcut icon" href="{{static_url("image/favicon.ico")}}">
+    <link rel="bookmark" href="{{static_url("image/favicon.ico")}}">
+    <link rel="stylesheet" type="text/css" href="{{static_url("bs/css/datatables.css")}}">
+    <script src="{{static_url("bs/js/jquery.min.js")}}"></script>
+    <script src="{{static_url("bs/js/bootstrap.js")}}"></script>
+    <script src="{{static_url("bs/js/holder.min.js")}}"></script>
+    <script src="{{static_url("bs/js/holder.js")}}"></script>
+    <script src="{{static_url("bs/js/jquery.dataTables.js")}}"></script>
+    <script src="{{static_url("bs/js/datatables.js")}}"></script>
+    <style>
+        body{
+            /*background-image: url("../images/back.jpg");*/
+            /*background-size: 1600px;*/
+            /*height: 700px;*/
+        }
+        *{
+            font-family: 微软雅黑;
+        }
+    </style>
+</head>
+<body>
+    <!--导航条-->
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#" style="color: #5bc0de; font-size: 35px;font-family: 'DIN Condensed';text-align: center;height: 100%;margin-top: 5px">ACM</a>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li><a href="/HomePage" style="font-size: 16px;margin-top: 2px">首页</a></li>
+                    <li><a href="/Problem" style="font-size: 16px;margin-top: 2px">题库</a></li>
+                    <li><a href="/Contest" style="font-size: 16px;margin-top: 2px">比赛</a></li>
+                    <li><a href="/User?Type='-1'" style="font-size: 16px;margin-top: 2px">用户</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <div class="dropdown" style="margin-top: 20px">
+                        <a id="dLabel" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: black">
+                            <span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp;{{Person_id}}
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="dLabel">
+                            <ul class="nav nav-pills nav-stacked">
+                                <li role="presentation"><a href="/PerInformation" style="color: black">
+                                    &nbsp;<span class="glyphicon glyphicon-pencil"></span>&nbsp;&nbsp;我的资料</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li role="presentation">
+                                    <a href="/logout" style="color: black">&nbsp;<span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>&nbsp;&nbsp;退出</a>
+                                </li>
+                            </ul>
+                        </ul>
+                    </div>
+                </ul>
+            </div>
+        </div>
+        </div>
+    </nav>
+    <div class="container hide" id="a1">
+        {% block HomePage %}
+        {% end %}
+    </div>
+    <div class="jumbotron hide" id="ax" style="background-image: url({{static_url("image/PerInformation.jpg")}}); background-size: cover; margin: 0px">
+        <div class="container">
+            <div class="row" style="height: 30px"></div>
+            <h1 style="color: beige">Chase Dreams!</h1>
+            <div class="row" style="height: 10px;"></div>
+            <p class="lead" style="color: wheat;text-align: center"><small>目标的坚定是性格中最必要的力量源泉之一，也是成功的利器之一。没有它，天才会在矛盾无定的迷径中徒劳无功。</small></p>
+        </div>
+    </div>
+    <div class="jumbotron hide" style="margin: 0px" id="a2">
+        {% block Problem %}
+        {% end %}
+    </div>
+    <div class="jumbotron hide" style="margin: 0px" id="a3">
+        {% block Contest %}
+        {% end %}
+    </div>
+    <div class="jumbotron hide" style="margin: 0px" id="a4">
+        {% block User %}
+        {% end %}
+    </div>
+    <div class="jumbotron hide" style="margin: 0px;" id="a5">
+        {% block PerInformation %}
+        {% end %}
+    </div>
+</body>
+</html>
+
+{% block script %}
+{% end %}
+
+<script>
+</script>

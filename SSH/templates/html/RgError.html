@@ -1,0 +1,28 @@
+{% extends "index.html" %}
+
+{% block main %}
+<script>
+    document.getElementById("Rg").click();
+    {% if jud == 1 %}
+        document.getElementById("RgError1").className="show";
+        $(document).mousedown(function(){
+            document.getElementById("RgError1").className="hidden";
+        });
+    {% elif jud == 3 %}
+        document.getElementById("RgError3").className="show";
+        $(document).mousedown(function(){
+            document.getElementById("RgError3").className="hidden";
+        });
+    {% elif jud == 4 %}
+        document.getElementById("Success1").className="show";
+        $(document).mousedown(function(){
+            document.getElementById("Success1").className="hidden";
+        });
+     {% else %} 
+        document.getElementById("RgError2").className="show";
+        $(document).mousedown(function(){
+            document.getElementById("RgError2").className="hidden";
+        });
+    {% end %}
+</script>
+{% end %}

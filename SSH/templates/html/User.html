@@ -1,0 +1,697 @@
+{% extends "home.html" %}
+
+{% block User %}
+<div class="container">
+    <div class="row">
+        <div class="col-sm-10">
+            <ul class="nav nav-pills">
+                <li role="presentation" class="active" style="margin-bottom: 30px" id="FinishedPro"
+                    onclick="FinishedPro()"><a href="#">写过的题目</a></li>
+                <li role="presentation" class="" style="margin-bottom: 30px" id="FinishedPersonalCon"
+                    onclick="FinishedPersonalCon()"><a href="#">个人参加的比赛</a></li>
+                <li role="presentation" class="" style="margin-bottom: 30px" id="Team" onclick="Team()"><a
+                        href="#">队伍信息</a></li>
+            </ul>
+        </div>
+        <div class="col-sm-1 show" style="margin-top: 3px;margin-right: 0px;text-align: right" id="FinishedProButton1">
+            <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#AddPro"
+                    style="text-align: right" id="UserAddProButton">添加题目
+            </button>
+        </div>
+        <div class="col-sm-1 show" style="margin-top: 3px;margin-left: 0px;text-align: left" id="FinishedProButton2">
+            <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#DeletePro"
+                    style="text-align: right" id="UserDeleteProButton">删除题目
+            </button>
+        </div>
+        <div class="col-sm-1 hide" style="margin-top: 3px;margin-right: 0px;text-align: right" id="FinishedConButton1">
+            <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#AddCon"
+                    style="text-align: right" id="UserAddConButton">添加比赛
+            </button>
+        </div>
+        <div class="col-sm-1 hide" style="margin-top: 3px;margin-left: 0px;text-align: left" id="FinishedConButton2">
+            <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#DeleteCon"
+                    style="text-align: right" id="UserDeleteConButton">删除比赛
+            </button>
+        </div>
+        <div class="col-sm-1 hide" style="margin-top: 3px;margin-right: 0px;text-align: right" id="AddTeamButton">
+            <a type="button" class="btn btn-success btn-sm"
+                    style="text-align: right" id="UserAddTeamButton" href="/User?Type=4">创建队伍
+            </a>
+        </div>
+        <div class="col-sm-1 hide" style="margin-top: 3px;margin-left: 0px;text-align: left" id="DeleteTeamButton">
+            <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#DeleteTeam"
+                    style="text-align: right" id="UserDeleteTeamButton" >退出队伍
+            </button>
+        </div>
+    </div>
+
+    <!--界面1-->
+    <form class="modal fade" id="AddPro" action="/User?Type=1" tabindex="-1" role="dialog"
+          aria-labelledby="myModalLabel" method="post">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">添加题目</h4>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="UserAddProblemID">题目ID</label>
+                            <select id="UserAddProblemID" class="form-control input-group" name="UserAddProblemID">
+                                {% for line in FF %}
+                                    {% if line['Problem_id'] not in [h['Problem_id'] for h in Problem] %}
+                                        <option>{{line['Problem_id']}}​&nbsp;​&nbsp;{{line['Problem_name']}}​</option>
+                                    {% end %}
+                                {% end %}
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="UserAddProblemTAG">题目TAG</label>
+                            <input id="UserAddProblemTAG" class="form-control input-group" name="UserAddProblemTAG">
+                        </div>
+                        <div class="form-group">
+                            <label for="UserAddProblemLink">题解Link</label>
+                            <input id="UserAddProblemLink" class="form-control input-group" name="UserAddProblemLink">
+                        </div>
+                        <p class="hide" id="UserAddProError1"
+                           style="font-size: 15px;margin-top: 10px;margin-bottom: 0px;color: red">此题已做过</p>
+                        <p class="hide" id="UserAddProError2"
+                           style="font-size: 15px;margin-top: 10px;margin-bottom: 0px;color: green">添加成功</p>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">取消</button>
+                    <button type="submit" class="btn btn-primary">添加</button>
+                </div>
+            </div>
+        </div>
+    </form>
+    <form class="modal fade" id="DeletePro" action="/User?Type=11" tabindex="-1" role="dialog"
+          aria-labelledby="myModalLabel" method="post">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel2">删除题目</h4>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="UserDeleteProblemID">题目ID</label>
+                            <select id="UserDeleteProblemID" class="form-control input-group"
+                                    name="UserDeleteProblemID">
+                                {% for line in Problem %}
+                                <option>{{line['Problem_id']}}</option>
+                                {% end %}
+                            </select>
+                        </div>
+                        <p class="hide" id="UserDeleteProError1"
+                           style="font-size: 15px;margin-top: 10px;margin-bottom: 0px;color: green">删除成功</p>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">取消</button>
+                    <button type="submit" class="btn btn-primary">删除</button>
+                </div>
+            </div>
+        </div>
+    </form>
+    <div class="show" id="UserTable1">
+        <table id="UserTable11" class="table table-hover" style="margin-top: 30px">
+            <thead>
+            <tr>
+                <th>Problem_ID</th>
+                <th>OJ&nbsp;&&nbsp;Number</th>
+                <th>标题</th>
+                <th>难度</th>
+                <th>算法</th>
+                <th>提交时间</th>
+                <th>TAG</th>
+                <th>Link</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for line in Problem %}
+            <tr>
+                <td>{{line['Problem_id']}}</td>
+                <td><strong>{{line['OJ']}}</strong>
+                    <small>​&nbsp;​&nbsp;{{line['OJ_Pnumber']}}</small>
+                </td>
+                {% if line['Link'] != 'NULL' %}
+                <td><a href="{{line['Link']}}">{{line['Problem_name']}}</a></td>
+                {% else %}
+                <td><a href="#">{{line['Problem_name']}}</a></td>
+                {% end %}
+                <td>{{line['Difficulty']}}</td>
+                <td>{{line['Algorithm']}}</td>
+                <td>{{line['Submit_time']}}</td>
+                <td>{{line['TAG']}}</td>
+                {% if line['Solution_Link'] != 'NULL' %}
+                <td><a href="{{line['Solution_Link']}}">题解</a></td>
+                {% else %}
+                <td><a href="#">题解</a></td>
+                {% end %}
+            </tr>
+            {% end %}
+            </tbody>
+        </table>
+        <div class="row" style="height: {{Length}}px"></div>
+    </div>
+
+    <!--界面2-->
+    <form class="modal fade" id="AddCon" action="/User?Type=2" tabindex="-1" role="dialog"
+          aria-labelledby="myModalLabel" method="post">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel3">添加比赛</h4>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="UserAddConID">比赛ID</label>
+                            <select id="UserAddConID" class="form-control input-group" name="UserAddConID">
+                                {% for line in ConLen %}
+                                    {% if line['Contest_id'] not in [h['Contest_id'] for h in Contest] %}
+                                        <option>{{line['Contest_id']}}​&nbsp;​&nbsp;{{line['Name']}}​</option>
+                                    {% end %}
+                                {% end %}
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="UserAddConRank1">排名</label>
+                            <input type="text" name="UserAddConRank1" class="form-control input-group" id="UserAddConRank1"
+                            	onkeyup="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}"
+                                   onafterpaste="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'0')}else{this.value=this.value.replace(/\D/g,'')}" />
+                        </div>
+                        <div class="form-group">
+                            <label for="UserAddConRank2">总人数</label>
+                            <input type="text" name="UserAddConRank2" class="form-control input-group" id="UserAddConRank2"
+                            	onkeyup="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}"
+                                   onafterpaste="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'0')}else{this.value=this.value.replace(/\D/g,'')}" />
+                        </div>
+                        <div class="form-group">
+                            <label for="UserAddConTime">罚时</label>
+                            <input type="text" name="UserAddConTime" class="form-control input-group" id="UserAddConTime"
+                            	onkeyup="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}"
+                                   onafterpaste="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'0')}else{this.value=this.value.replace(/\D/g,'')}" />
+                        </div>
+                        <div class="form-group">
+                            <label for="UserAddConTAG">比赛TAG</label>
+                            <input id="UserAddConTAG" class="form-control input-group" name="UserAddConTAG">
+                        </div>
+                        <p class="hide" id="UserAddConError2"
+                           style="font-size: 15px;margin-top: 10px;margin-bottom: 0px;color: green">添加成功</p>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">取消</button>
+                    <button type="submit" class="btn btn-primary">添加</button>
+                </div>
+            </div>
+        </div>
+    </form>
+    <form class="modal fade" id="DeleteCon" action="/User?Type=21" tabindex="-1" role="dialog"
+          aria-labelledby="myModalLabel" method="post">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel31">删除题目</h4>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="UserDeleteConID">比赛ID</label>
+                            <select id="UserDeleteConID" class="form-control input-group"
+                                    name="UserDeleteConID">
+                                {% for line in Contest %}
+                                <option>{{line['Contest_id']}}​</option>
+                                {% end %}
+                            </select>
+                        </div>
+                        <p class="hide" id="UserDeleteConError1"
+                           style="font-size: 15px;margin-top: 10px;margin-bottom: 0px;color: green">删除成功</p>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">取消</button>
+                    <button type="submit" class="btn btn-primary">删除</button>
+                </div>
+            </div>
+        </div>
+    </form>
+    <div class="show" id="UserTable2">
+        <table id="UserTable21" class="table table-hover" style="margin-top: 30px">
+            <thead>
+            <tr>
+                <th>Contest_ID</th>
+                <th>Name</th>
+                <th style="text-align: center;">排名</th>
+                <!--<th style="text-align: center;">总罚时 (分)</th>-->
+                <th style="text-align: center;">未完成题目数</th>
+                <th style="text-align: center;">比赛时间</th>
+                <th style="text-align: center;">比赛类型</th>
+                <th>TAG</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for line in Contest %}
+                {% if line['Finish'] == 0 %}
+                    <tr class="success">
+                {% else %}
+                    <tr>
+                {% end %}
+                <td>{{line['Contest_id']}}</td>
+                <td><a href="/ConInformation?Contest_id={{line['Contest_id']}}&THP=1">{{line['Name']}}</a></td>
+                <td style="text-align: center;">{{line['Rank']}}</td>
+                <!--<td style="text-align: center;">{{line['Time_total']}}</td>-->
+                {% if line['Finish'] == 0 %}
+                    <td style="text-align: center;">{{line['Finish']}}</td>
+                {% else %}
+                    <td style="text-align: center;"><font color="#cd5c5c">{{line['Finish']}}</font></td>
+                {% end %}
+                <td style="text-align: center;">{{line['Begin_time']}}</td>
+                <td style="text-align: center;">{{line['Contest_type']}}</td>
+                <td>{{line['TAG']}}</td>
+            </tr>
+            {% end %}
+            </tbody>
+        </table>
+        <div class="row" style="height: {{Length2}}px"></div>
+    </div>
+
+    <!--界面3-->
+    <div class="hide" id="UserTable3">
+        <table class="table table-hover" style="margin-top: 30px" id="UserTable31">
+            <thead>
+            <tr>
+                <th>Team_ID</th>
+                <th>队伍名</th>
+                <th>组建时间</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for line in Team %}
+            <tr>
+                <td>{{line['Team_id']}}</td>
+                <td><a href="/TeamInformation?Team_id={{line['Team_id']}}">{{line['Name']}}</a></td>
+                <td>{{line['Begin_time']}}</td>
+            </tr>
+            {% end %}
+            </tbody>
+        </table>
+        <div class="row" style="height: {{Length3}}px"></div>
+    </div>
+    <form class="modal fade" id="DeleteTeam" action="/User?Type=41" tabindex="-1" role="dialog"
+          aria-labelledby="myModalLabel" method="post">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel41">退出队伍</h4>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="UserDeleteTeamID">队伍ID</label>
+                            <select id="UserDeleteTeamID" class="form-control input-group"
+                                    name="UserDeleteTeamID">
+                                {% for line in Team %}
+                                <option>{{line['Team_id']}}</option>
+                                {% end %}
+                            </select>
+                        </div>
+                        <p class="hide" id="UserDeleteTeamError1"
+                           style="font-size: 15px;margin-top: 10px;margin-bottom: 0px;color: green">退出成功</p>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">取消</button>
+                    <button type="submit" class="btn btn-primary">删除</button>
+                </div>
+            </div>
+        </div>
+    </form>
+
+</div>
+{% end %}
+
+{% block script %}
+<script>
+    document.getElementById("a1").className = "container hide";
+    document.getElementById("ax").className = "jumbotron show";
+    document.getElementById("a2").className = "jumbotron hide";
+    document.getElementById("a3").className = "jumbotron hide";
+    document.getElementById("a4").className = "jumbotron show";
+    document.getElementById("a5").className = "jumbotron hide";
+
+    function FinishedPro() {
+        document.getElementById("FinishedPro").className = "active";
+        document.getElementById("UserTable1").className = "show";
+        document.getElementById("UserTable2").className = "hide";
+        document.getElementById("UserTable3").className = "hide";
+        document.getElementById("FinishedProButton1").className = "col-sm-1 show";
+        document.getElementById("FinishedProButton2").className = "col-sm-1 show";
+        document.getElementById("FinishedConButton1").className = "col-sm-1 hide";
+        document.getElementById("FinishedConButton2").className = "col-sm-1 hide";
+        document.getElementById("AddTeamButton").className = "col-sm-1 hide";
+        document.getElementById("DeleteTeamButton").className = "col-sm-1 hide";
+        document.getElementById("FinishedPersonalCon").className = "";
+        document.getElementById("Team").className = "";
+    }
+
+    function FinishedPersonalCon() {
+        document.getElementById("FinishedPro").className = "";
+        document.getElementById("UserTable1").className = "hide";
+        document.getElementById("UserTable2").className = "show";
+        document.getElementById("UserTable3").className = "hide";
+        document.getElementById("FinishedProButton1").className = "col-sm-1 hide";
+        document.getElementById("FinishedProButton2").className = "col-sm-1 hide";
+        document.getElementById("FinishedConButton1").className = "col-sm-1 show";
+        document.getElementById("FinishedConButton2").className = "col-sm-1 show";
+        document.getElementById("AddTeamButton").className = "col-sm-1 hide";
+        document.getElementById("DeleteTeamButton").className = "col-sm-1 hide";
+        document.getElementById("FinishedPersonalCon").className = "active";
+        document.getElementById("Team").className = "";
+    }
+
+    function Team() {
+        document.getElementById("FinishedPro").className = "";
+        document.getElementById("UserTable1").className = "hide";
+        document.getElementById("UserTable2").className = "hide";
+        document.getElementById("UserTable3").className = "show";
+        document.getElementById("FinishedProButton1").className = "col-sm-1 hide";
+        document.getElementById("FinishedProButton2").className = "col-sm-1 hide";
+        document.getElementById("FinishedConButton1").className = "col-sm-1 hide";
+        document.getElementById("FinishedConButton2").className = "col-sm-1 hide";
+        document.getElementById("AddTeamButton").className = "col-sm-1 show";
+        document.getElementById("DeleteTeamButton").className = "col-sm-1 show";
+        document.getElementById("FinishedPersonalCon").className = "";
+        document.getElementById("Team").className = "active";
+    }
+    {% if jud == '-1' %}
+        var scrollTimeout = null;
+        $(window).scroll(function () {
+            if(document.getElementById("UserTable1").className == 'show'){
+                if (scrollTimeout) clearTimeout(scrollTimeout);
+                    scrollTimeout = setTimeout(function () {
+                    FinishedPro();
+                }, 5);
+            }
+        });
+        document.getElementsByTagName("body")[0].onmousedown = function(e){
+           if(e.button ==2 || e.button == 0 || e.button == 1){
+                if(document.getElementById("UserTable1").className == 'show'){
+                    FinishedPro();
+                }
+            }
+        }
+    {% elif jud == '1' %}
+        FinishedPro();
+        document.getElementById("UserTable2").className = "show";
+        $(window).scroll(function () {
+            if(document.getElementById("UserTable1").className == 'show'){
+                if (scrollTimeout) clearTimeout(scrollTimeout);
+                    scrollTimeout = setTimeout(function () {
+                    FinishedPro();
+                }, 5);
+            }
+        });
+        document.getElementsByTagName("body")[0].onmousedown = function(e){
+           if(e.button ==2 || e.button == 0 || e.button == 1){
+                if(document.getElementById("UserTable1").className == 'show'){
+                    FinishedPro();
+                }
+            }
+        }
+        document.getElementById("UserAddProButton").click();
+        document.getElementById("UserAddProError1").className = "show";
+        $(document).mousedown(function () {
+            document.getElementById("UserAddProError1").className = "hidden";
+        });
+    {% elif jud == '0' %}
+        FinishedPro();
+        document.getElementById("UserTable2").className = "show";
+        $(window).scroll(function () {
+            if(document.getElementById("UserTable1").className == 'show'){
+                if (scrollTimeout) clearTimeout(scrollTimeout);
+                    scrollTimeout = setTimeout(function () {
+                    FinishedPro();
+                }, 5);
+            }
+        });
+        document.getElementsByTagName("body")[0].onmousedown = function(e){
+           if(e.button ==2 || e.button == 0 || e.button == 1){
+                if(document.getElementById("UserTable1").className == 'show'){
+                    FinishedPro();
+                }
+            }
+        }
+        document.getElementById("UserAddProButton").click();
+        document.getElementById("UserAddProError2").className = "show";
+        $(document).mousedown(function () {
+            document.getElementById("UserAddProError2").className = "hidden";
+        });
+    {% elif jud == '11' %}
+        FinishedPro();
+        document.getElementById("UserTable2").className = "show";
+        $(window).scroll(function () {
+            if(document.getElementById("UserTable1").className == 'show'){
+                if (scrollTimeout) clearTimeout(scrollTimeout);
+                    scrollTimeout = setTimeout(function () {
+                    FinishedPro();
+                }, 5);
+            }
+        });
+        document.getElementsByTagName("body")[0].onmousedown = function(e){
+           if(e.button ==2 || e.button == 0 || e.button == 1){
+                if(document.getElementById("UserTable1").className == 'show'){
+                    FinishedPro();
+                }
+            }
+        }
+        document.getElementById("UserDeleteProButton").click();
+        document.getElementById("UserDeleteProError1").className = "show";
+        $(document).mousedown(function () {
+            document.getElementById("UserDeleteProError1").className = "hidden";
+        });
+    {% elif jud == '2' %}
+        FinishedPersonalCon();
+        // document.getElementById("UserTable1").className = "show";
+        // $(window).scroll(function () {
+        //     if(document.getElementById("UserTable2").className == 'show'){
+        //         if (scrollTimeout) clearTimeout(scrollTimeout);
+        //             scrollTimeout = setTimeout(function () {
+        //             FinishedPersonalCon();
+        //         }, 5);
+        //     }
+        // });
+        // document.getElementsByTagName("body")[0].onmousedown = function(e){
+        //    if(e.button ==2 || e.button == 0 || e.button == 1){
+        //         if(document.getElementById("UserTable2").className == 'show'){
+        //             FinishedPersonalCon();
+        //         }
+        //     }
+        // }
+        document.getElementById("UserAddConButton").click();
+        document.getElementById("UserAddConError2").className = "show";
+        $(document).mousedown(function () {
+            document.getElementById("UserAddConError2").className = "hidden";
+        });
+    {% elif jud == '21' %}
+        FinishedPersonalCon();
+        // document.getElementById("UserTable1").className = "show";
+        // $(window).scroll(function () {
+        //     if(document.getElementById("UserTable2").className == 'show'){
+        //         if (scrollTimeout) clearTimeout(scrollTimeout);
+        //             scrollTimeout = setTimeout(function () {
+        //             FinishedPersonalCon();
+        //         }, 5);
+        //     }
+        // });
+        // document.getElementsByTagName("body")[0].onmousedown = function(e){
+        //    if(e.button ==2 || e.button == 0 || e.button == 1){
+        //         if(document.getElementById("UserTable2").className == 'show'){
+        //             FinishedPersonalCon();
+        //         }
+        //     }
+        // }
+        document.getElementById("UserDeleteConButton").click();
+        document.getElementById("UserDeleteConError1").className = "show";
+        $(document).mousedown(function () {
+            document.getElementById("UserDeleteConError1").className = "hidden";
+        });
+    {% elif jud == '3' %}
+        Team();
+    {% elif jud == '31' %}
+        Team();
+        document.getElementById("UserDeleteTeamButton").click();
+        document.getElementById("UserDeleteTeamError1").className = "show";
+        $(document).mousedown(function () {
+            document.getElementById("UserDeleteTeamError1").className = "hidden";
+        });
+    {% elif jud == '-2' %}
+        Team();
+    {% end %}
+
+    $('#UserTable11').DataTable({
+        dom: 'Bfrtip',
+        buttons: [
+            'pageLength',
+            {extend: 'excelHtml5', text: "导出Excel"},
+            {
+                extend: 'print',
+                text: '打印表格',
+                title: "",
+                exportOptions: {
+                    modifier: {
+                        page: 'current',
+                        columns: ':visible',
+                    }
+                }
+            }
+        ],
+        "pageLength": 20,
+        lengthMenu: [[10, 20, 50, 100, 200, -1], [10, 20, 50, 100, 200, "All"]],
+        'columnDefs': [
+            { "width": "7%", "targets": [3] },
+            { "width": "10%", "targets": [4] },
+            { "width": "10%", "targets": [5] },
+            { "width": "35%", "targets": [6] }
+        ],
+        language: {
+            "sProcessing": "处理中...",
+            "sLengthMenu": "显示 _MENU_ 项结果",
+            "sZeroRecords": "没有匹配结果",
+            "sInfo": "显示第 _START_ 至 _END_ 项结果，共 _TOTAL_ 项",
+            "sInfoEmpty": "显示第 0 至 0 项结果，共 0 项",
+            "sInfoFiltered": "(由 _MAX_ 项结果过滤)",
+            "sInfoPostFix": "",
+            "sSearch": "搜索:",
+            "sUrl": "",
+            "sEmptyTable": "表中数据为空",
+            "sLoadingRecords": "载入中...",
+            "sInfoThousands": ",",
+            "oPaginate": {
+                "sFirst": "首页",
+                "sPrevious": "上页",
+                "sNext": "下页",
+                "sLast": "末页"
+            },
+            "oAria": {
+                "sSortAscending": ": 以升序排列此列",
+                "sSortDescending": ": 以降序排列此列"
+            }
+        },
+    });
+
+    $('#UserTable21').DataTable({
+        dom: 'Bfrtip',
+        buttons: [
+            'pageLength',
+            {extend: 'excelHtml5', text: "导出Excel"},
+            {
+                extend: 'print',
+                text: '打印表格',
+                title: "",
+                exportOptions: {
+                    modifier: {
+                        page: 'current',
+                        columns: ':visible',
+                    }
+                }
+            }
+        ],
+        "pageLength": 20,
+        lengthMenu: [[10, 20, 50, 100, 200, -1], [10, 20, 50, 100, 200, "All"]],
+        'columnDefs': [
+            { "width": "3%", "targets": [0] },
+            { "width": "16%", "targets": [1] },
+            { "width": "6%", "targets": [2] },
+            { "width": "12%", "targets": [3] },
+            { "width": "9%", "targets": [4] },
+            { "width": "9%", "targets": [5] },
+            { "width": "50%", "targets": [6] }
+        ],
+        language: {
+            "sProcessing": "处理中...",
+            "sLengthMenu": "显示 _MENU_ 项结果",
+            "sZeroRecords": "没有匹配结果",
+            "sInfo": "显示第 _START_ 至 _END_ 项结果，共 _TOTAL_ 项",
+            "sInfoEmpty": "显示第 0 至 0 项结果，共 0 项",
+            "sInfoFiltered": "(由 _MAX_ 项结果过滤)",
+            "sInfoPostFix": "",
+            "sSearch": "搜索:",
+            "sUrl": "",
+            "sEmptyTable": "表中数据为空",
+            "sLoadingRecords": "载入中...",
+            "sInfoThousands": ",",
+            "oPaginate": {
+                "sFirst": "首页",
+                "sPrevious": "上页",
+                "sNext": "下页",
+                "sLast": "末页"
+            },
+            "oAria": {
+                "sSortAscending": ": 以升序排列此列",
+                "sSortDescending": ": 以降序排列此列"
+            }
+        },
+    });
+
+    $('#UserTable31').DataTable({
+        dom: 'Bfrtip',
+        buttons: [
+            'pageLength',
+            {extend: 'excelHtml5', text: "导出Excel"},
+            {
+                extend: 'print',
+                text: '打印表格',
+                title: "",
+                exportOptions: {
+                    modifier: {
+                        page: 'current',
+                        columns: ':visible',
+                    }
+                }
+            }
+        ],
+        "pageLength": 20,
+        lengthMenu: [[10, 20, 50, 100, 200, -1], [10, 20, 50, 100, 200, "All"]],
+        'columnDefs': [
+        ],
+        language: {
+            "sProcessing": "处理中...",
+            "sLengthMenu": "显示 _MENU_ 项结果",
+            "sZeroRecords": "没有匹配结果",
+            "sInfo": "显示第 _START_ 至 _END_ 项结果，共 _TOTAL_ 项",
+            "sInfoEmpty": "显示第 0 至 0 项结果，共 0 项",
+            "sInfoFiltered": "(由 _MAX_ 项结果过滤)",
+            "sInfoPostFix": "",
+            "sSearch": "搜索:",
+            "sUrl": "",
+            "sEmptyTable": "表中数据为空",
+            "sLoadingRecords": "载入中...",
+            "sInfoThousands": ",",
+            "oPaginate": {
+                "sFirst": "首页",
+                "sPrevious": "上页",
+                "sNext": "下页",
+                "sLast": "末页"
+            },
+            "oAria": {
+                "sSortAscending": ": 以升序排列此列",
+                "sSortDescending": ": 以降序排列此列"
+            }
+        },
+    });
+</script>
+{% end %}

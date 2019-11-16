@@ -1,0 +1,12 @@
+{% extends "PerInformation.html" %}
+
+{% block SereError %}
+<script>
+    document.getElementById("Serectli").click();
+    tmp = "SerectError"+{{jud}}
+    document.getElementById(tmp).className="show";
+    $(document).mousedown(function(){
+        document.getElementById(tmp).className="hidden";
+    });
+</script>
+{% end %}

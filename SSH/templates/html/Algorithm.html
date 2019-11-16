@@ -1,0 +1,323 @@
+{% extends "home.html" %}
+
+{% block Problem %}
+    <div class="container">
+        <ul class="nav nav-pills">
+            <li role="presentation" class="" style="margin-bottom: 30px" id="ProStore"><a href="/Problem">题目集合</a></li>
+            <li role="presentation" class="active" style="margin-bottom: 30px" id="Algorithm"><a href="/Algorithm">算法分类</a></li>
+        </ul>
+        <div class="row" style="height: 60px;margin-top: 0px">
+            <h3 class="lead"><mark>动态规划</mark></h3>
+        </div>
+        <div class="row" style="height: 30px">
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">LCS</p></div>
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">LIS</p></div>
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">背包</p></div>
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">单调性DP</p></div>
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">环形DP</p></div>
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">树形DP</p></div>
+        </div>
+        <div class="row" style="height: 30px">
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">状压DP</p></div>
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">线性DP</p></div>
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">概率DP</p></div>
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">区间DP</p></div>
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">数位DP</p></div>
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">斜率优化DP</p></div>
+        </div>
+        <div class="row" style="height: 30px">
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">斯坦纳树</p></div>
+        </div>
+
+        <div class="row" style="height: 60px;margin-top: 30px">
+            <h3 class="lead"><mark>搜索</mark></h3>
+        </div>
+        <div class="row" style="height: 30px">
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">枚举</p></div>
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">搜索与剪枝</p></div>
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">启发式搜索</p></div>
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">DLX</p></div>
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">双向搜索</p></div>
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">折半搜索</p></div>
+        </div>
+        <div class="row" style="height: 30px">
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">记忆化搜索</p></div>
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">模拟退火</p></div>
+        </div>
+
+        <div class="row" style="height: 60px;margin-top: 30px">
+            <h3 class="lead"><mark>计算几何</mark></h3>
+        </div>
+        <div class="row" style="height: 30px">
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">半平面交</p></div>
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">凸包</p></div>
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">几何图形的交与并</p></div>
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">旋转卡壳</p></div>
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">点定位</p></div>
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">坐标变换</p></div>
+        </div>
+        <div class="row" style="height: 30px">
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">离散化与扫描</p></div>
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">反演</p></div>
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">Voronoi图</p></div>
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">平面图的对偶图</p></div>
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">三角剖分</p></div>
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">梯形剖分</p></div>
+        </div>
+        <div class="row" style="height: 30px">
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">几何知识</p></div>
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">扫描线</p></div>
+        </div>
+
+        <div class="row" style="height: 60px;margin-top: 30px">
+            <h3 class="lead"><mark>树结构</mark></h3>
+        </div>
+        <div class="row" style="height: 30px">
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">最近公共祖先</p></div>
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">生成树</p></div>
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">DFS序列</p></div>
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">树上倍增</p></div>
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">长链剖分</p></div>
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">树链剖分</p></div>
+        </div>
+        <div class="row" style="height: 30px">
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">Link-Cut-Tree</p></div>
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">树上构造题</p></div>
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">点分治</p></div>
+        </div>
+
+        <div class="row" style="height: 60px;margin-top: 30px">
+            <h3 class="lead"><mark>图结构</mark></h3>
+        </div>
+        <div class="row" style="height: 30px">
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">平面图</p></div>
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">二分图</p></div>
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">二分图匹配</p></div>
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">最短路</p></div>
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">差分约束</p></div>
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">拓扑排序</p></div>
+        </div>
+        <div class="row" style="height: 30px">
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">树的直径</p></div>
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">2-SAT</p></div>
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">强连通分量</p></div>
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">割点割边</p></div>
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">点双连通分量</p></div>
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">边双连通分量</p></div>
+        </div>
+        <div class="row" style="height: 30px">
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">LCA</p></div>
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">欧拉回路</p></div>
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">建图</p></div>
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">最大流</p></div>
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">最小割</p></div>
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">最小点覆盖</p></div>
+        </div>
+        <div class="row" style="height: 30px">
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">最大匹配</p></div>
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">费用流</p></div>
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">地图染色问题</p></div>
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">欧拉路径</p></div>
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">最小路径覆盖</p></div>
+        </div>
+
+
+        <div class="row" style="height: 60px;margin-top: 30px">
+            <h3 class="lead"><mark>数论</mark></h3>
+        </div>
+        <div class="row" style="height: 30px">
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">素数判定</p></div>
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">Exgcd</p></div>
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">不定方程</p></div>
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">数位统计</p></div>
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">解线性同余方程</p></div>
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">baby-step-giant-step</p></div>
+        </div>
+        <div class="row" style="height: 30px">
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">Pell方程</p></div>
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">大整数质因数分解</p></div>
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">勾股方程</p></div>
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">积性函数</p></div>
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">Fibonacci数列</p></div>
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">数论思维题</p></div>
+        </div>
+        <div class="row" style="height: 30px">
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">数论思维-等差/比数列</p></div>
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">公式推导</p></div>
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">杜教筛</p></div>
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">Min_25筛</p></div>
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">NTT</p></div>
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">莫比乌斯反演</p></div>
+        </div>
+        <div class="row" style="height: 30px">
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">范德蒙行列式</p></div>
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">中国剩余定理</p></div>
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">FFT</p></div>
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">高斯素数</p></div>
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">线性基</p></div>
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">Dilworth定理</p></div>
+        </div>
+        <div class="row" style="height: 30px">
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">FWT</p></div>
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">类欧几里得算法</p></div>
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">高等数学</p></div>
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">线性代数</p></div>
+        </div>
+
+        <div class="row" style="height: 60px;margin-top: 30px">
+            <h3 class="lead"><mark>线性代数</mark></h3>
+        </div>
+        <div class="row" style="height: 30px">
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">矩阵乘法</p></div>
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">高斯消元</p></div>
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">线性规划</p></div>
+        </div>
+
+        <div class="row" style="height: 60px;margin-top: 30px">
+            <h3 class="lead"><mark>字符串</mark></h3>
+        </div>
+        <div class="row" style="height: 30px">
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">KMP</p></div>
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">后缀数据结构</p></div>
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">Trie树</p></div>
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">AC自动机</p></div>
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">Manacher</p></div>
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">表达式处理</p></div>
+        </div>
+        <div class="row" style="height: 30px">
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">最小表示法</p></div>
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">Hash</p></div>
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">回文树</p></div>
+        </div>
+
+        <div class="row" style="height: 60px;margin-top: 30px">
+            <h3 class="lead"><mark>组合数学</mark></h3>
+        </div>
+        <div class="row" style="height: 30px">
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">生成函数</p></div>
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">容斥原理</p></div>
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">康托展开</p></div>
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">Catalan数列</p></div>
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">Stirling数</p></div>
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">差分</p></div>
+        </div>
+        <div class="row" style="height: 30px">
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">Polya定理</p></div>
+        </div>
+
+        <div class="row" style="height: 60px;margin-top: 30px">
+            <h3 class="lead"><mark>数据结构</mark></h3>
+        </div>
+        <div class="row" style="height: 30px">
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">栈</p></div>
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">队列</p></div>
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">链表</p></div>
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">单调队列</p></div>
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">并查集</p></div>
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">带权并查集</p></div>
+        </div>
+        <div class="row" style="height: 30px">
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">按秩合并并查集</p></div>
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">堆</p></div>
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">平衡树</p></div>
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">线段树</p></div>
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">树状数组</p></div>
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">权值线段树</p></div>
+        </div>
+        <div class="row" style="height: 30px">
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">主席树</p></div>
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">树套树</p></div>
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">四分树</p></div>
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">划分树</p></div>
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">归并树</p></div>
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">k-d树</p></div>
+        </div>
+        <div class="row" style="height: 30px">
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">十字链表</p></div>
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">块状链表</p></div>
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">Hashing</p></div>
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">函数式编程</p></div>
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">CDQ分治</p></div>
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">李超树</p></div>
+        </div>
+        <div class="row" style="height: 30px">
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">单调栈</p></div>
+        </div>
+
+        <div class="row" style="height: 60px;margin-top: 30px">
+            <h3 class="lead"><mark>博弈论</mark></h3>
+        </div>
+        <div class="row" style="height: 30px">
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">巴什博弈</p></div>
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">威佐夫博弈</p></div>
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">NIM博弈</p></div>
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">SG函数</p></div>
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">找规律问题</p></div>
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">树上博弈</p></div>
+        </div>
+
+        <div class="row" style="height: 60px;margin-top: 30px">
+            <h3 class="lead"><mark>其他</mark></h3>
+        </div>
+        <div class="row" style="height: 30px">
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">二分查找</p></div>
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">三分查找</p></div>
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">双指针扫描</p></div>
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">分治</p></div>
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">分块</p></div>
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">RMQ</p></div>
+        </div>
+        <div class="row" style="height: 30px">
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">快速幂</p></div>
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">数学</p></div>
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">排序</p></div>
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">构造</p></div>
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">NPC</p></div>
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">递推</p></div>
+        </div>
+        <div class="row" style="height: 30px">
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">维护差分</p></div>
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">模拟</p></div>
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">贪心</p></div>
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">搜索</p></div>
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">思维题</p></div>
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">暴力</p></div>
+        </div>
+        <div class="row" style="height: 30px">
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">交互题</p></div>
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">STL</p></div>
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">启发式合并</p></div>
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">bitset优化</p></div>
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">矩阵快速幂</p></div>
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">打表找规律</p></div>
+        </div>
+        <div class="row" style="height: 30px">
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">随机化算法</p></div>
+        </div>
+
+        <div class="row" style="height: 60px;margin-top: 30px">
+            <h3 class="lead"><mark>高精度</mark></h3>
+        </div>
+        <div class="row" style="height: 30px">
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">FFT</p></div>
+        </div>
+
+        <div class="row" style="height: 60px;margin-top: 30px">
+            <h3 class="lead"><mark>概率论</mark></h3>
+        </div>
+        <div class="row" style="height: 30px">
+            <div class="col-md-2"><p class="lead" style="font-size: 15px">随机化</p></div>
+        </div>
+    </div>
+{% end %}
+
+{% block script %}
+<script>
+    document.getElementById("a1").className="container hide";
+    document.getElementById("ax").className="jumbotron show";
+    document.getElementById("a2").className="jumbotron show";
+    document.getElementById("a3").className="jumbotron hide";
+    document.getElementById("a4").className="jumbotron hide";
+    document.getElementById("a5").className="jumbotron hide";
+</script>
+{% end %}

@@ -1,0 +1,90 @@
+{% extends "home.html" %}
+
+{% block Contest %}
+    <div class="container">
+        <ul class="nav nav-pills">
+            <li role="presentation" class="active" style="margin-bottom: 30px" id="ConStore"><a href="/Contest">比赛集合</a></li>
+            <li role="presentation" class="" style="margin-bottom: 30px" id="ConAdd"><a href="/AddContest">添加比赛</a></li>
+        </ul>
+        <table id="ConTable" class="display table table-hover">
+            <thead>
+            <tr>
+                <th>​&nbsp;​&nbsp;​&nbsp;​ID</th>
+                <th>​Name</th>
+                <th>开始时间</th>
+                <th>结束时间</th>
+                <th>比赛类型</th>
+            </tr>
+            </thead>
+            <tbody>
+                {% for line in Contest %}
+                <tr>
+                    <td>{{line['Contest_id']}}</td>
+                    <td><a href="/ConInformation?Contest_id={{line['Contest_id']}}&THP=1"><strong>{{line['Name']}}</strong></a></td>
+                    <td>{{line['Begin_time']}}</td>
+                    <td>{{line['End_time']}}</td>
+                    <td><a href="{{line['Link']}}"><strong>{{line['Contest_type']}}</strong></a></td>
+                </tr>
+                {% end %}
+            </tbody>
+        </table>
+    </div>
+{% end %}
+
+{% block script %}
+<script>
+    document.getElementById("a1").className="container hide";
+    document.getElementById("ax").className="jumbotron show";
+    document.getElementById("a2").className="jumbotron hide";
+    document.getElementById("a3").className="jumbotron show";
+    document.getElementById("a4").className="jumbotron hide";
+    document.getElementById("a5").className="jumbotron hide";
+    $(document).ready(function () {
+        $('#ConTable').DataTable();
+    });
+    $('#ConTable').DataTable({
+        dom: 'Bfrtip',
+        buttons: [
+            'pageLength',
+            {extend: 'excelHtml5', text: "导出Excel"},
+            {
+                extend: 'print',
+                text: '打印表格',
+                title: "",
+                exportOptions: {
+                    modifier: {
+                        page: 'current',
+                        columns: ':visible',
+                    }
+                }
+            }
+        ],
+        "pageLength": 20,
+        lengthMenu: [[10, 20, 50, 100, 200, -1], [10, 20, 50, 100, 200, "All"]],
+        language: {
+            "sProcessing": "处理中...",
+            "sLengthMenu": "显示 _MENU_ 项结果",
+            "sZeroRecords": "没有匹配结果",
+            "sInfo": "显示第 _START_ 至 _END_ 项结果，共 _TOTAL_ 项",
+            "sInfoEmpty": "显示第 0 至 0 项结果，共 0 项",
+            "sInfoFiltered": "(由 _MAX_ 项结果过滤)",
+            "sInfoPostFix": "",
+            "sSearch": "搜索:",
+            "sUrl": "",
+            "sEmptyTable": "表中数据为空",
+            "sLoadingRecords": "载入中...",
+            "sInfoThousands": ",",
+            "oPaginate": {
+                "sFirst": "首页",
+                "sPrevious": "上页",
+                "sNext": "下页",
+                "sLast": "末页"
+            },
+            "oAria": {
+                "sSortAscending": ": 以升序排列此列",
+                "sSortDescending": ": 以降序排列此列"
+            }
+        },
+    });
+</script>
+{% end %}

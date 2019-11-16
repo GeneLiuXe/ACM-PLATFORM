@@ -1,0 +1,111 @@
+{% extends "home.html" %}
+
+{% block HomePage %}
+<div class="row" style="height: 80px"></div>
+<!--幻灯片-->
+<div id="mycarousel" class="carousel slide" data-ride="carousel">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+        <li data-target="#mycarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#mycarousel" data-slide-to="1"></li>
+        <li data-target="#mycarousel" data-slide-to="2"></li>
+    </ol>
+
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner" role="listbox">
+        <div class="item active">
+            <img src="{{static_url("image/icpc.png")}}" alt="...">
+            <div class="carousel-caption">
+            </div>
+        </div>
+        <div class="item">
+            <img src="{{static_url("image/icpc2.jpg")}}" alt="...">
+            <div class="carousel-caption">
+            </div>
+        </div>
+        <div class="item">
+            <img src="{{static_url("image/icpc1.jpg")}}" alt="...">
+            <div class="carousel-caption">
+            </div>
+        </div>
+    </div>
+    <a class="left carousel-control" href="#mycarousel" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#mycarousel" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
+</div>
+<!--近期题目-->
+<div class="row">
+    <h3 class="page-header">近期题目
+        <small>推荐</small>
+    </h3>
+    <div class="jumbotron">
+        {% for i in range(0,5) %}
+            {% if i != 0 %}
+            <div class="row" style="height: 30px;"></div>
+            {% end %}
+        <div class="row">
+            <div class="col-md-2">
+                <div class="text-center">
+                    <p><strong>{{Problem[i]['OJ']}}</strong>
+                        <small>{{Problem[i]['OJ_Pnumber']}}</small>
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-5">
+                <p class="text-left lead" style="margin-top: 0px">
+                    <a href="{{Problem[i]['Link']}}">
+                        <mark>{{Problem[i]['Problem_name']}}</mark></a>
+                    <small style="color: #8B8378">[{{Problem[i]['Difficulty_level']}}]</small>
+                </p>
+            </div>
+            <div class="col-md-5">
+                <div class="text-right lead" style="margin-top: 0px"><p style="color: #6C7B8B">{{Problem[i]['Algorithm']}}</p></div>
+            </div>
+        </div>
+        {% end %}
+    </div>
+</div>
+<!--近期比赛-->
+<div class="row">
+    <h3 class="page-header">近期比赛</h3>
+    <div class="jumbotron">
+        {% for i in range(0,5) %}
+            {% if i != 0 %}
+            <div class="row" style="height: 20px;"></div>
+            {% end %}
+        <div class="row">
+            <div class="col-md-2">
+                <div class="text-center"><p><strong>{{Contest[i]['Day']}}</strong></p></div>
+                <div class="text-nowrap text-center"><p>{{Contest[i]['Date']}}</p></div>
+            </div>
+            <div class="col-md-5">
+                <p class="text-left lead" style="margin-top: 20px">
+                    <a href="/ConInformation?Contest_id={{Contest[i]['Contest_id']}}&Type=1">
+                        <mark>{{Contest[i]['Name']}}</mark></a>
+                    <small style="color: #8B8378">[{{Contest[i]['Contest_type']}}]</small>
+                </p>
+            </div>
+            <div class="col-md-5">
+                <div class="text-right lead" style="margin-top: 20px"><p style="color: #6C7B8B">{{Contest[i]['Time1']}}-{{Contest[i]['Time2']}}</p></div>
+            </div>
+        </div>
+        {% end %}
+    </div>
+</div>
+{% end %}
+
+{% block script %}
+<script>
+    document.getElementById("a1").className="container show";
+    document.getElementById("ax").className="jumbotron hide";
+    document.getElementById("a2").className="jumbotron hide";
+    document.getElementById("a3").className="jumbotron hide";
+    document.getElementById("a4").className="jumbotron hide";
+    document.getElementById("a5").className="jumbotron hide";
+</script>
+{% end %}

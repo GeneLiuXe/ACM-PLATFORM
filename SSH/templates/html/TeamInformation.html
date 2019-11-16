@@ -1,0 +1,324 @@
+{% extends "home.html" %}
+
+{% block User %}
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-10">
+                <ul class="nav nav-pills">
+                    <li role="presentation" class="active" style="margin-bottom: 30px" id="TeamContest"
+                        onclick="TeamContest1()"><a href="#">队伍参加的比赛</a></li>
+                    <li role="presentation" class="" style="margin-bottom: 30px" id="TeamInformation"
+                        onclick="TeamInformation1()"><a href="#">队伍信息</a></li>
+                </ul>
+            </div>
+            <div class="col-sm-1" style="margin-top: 3px;margin-right: 0px;text-align: right" id="TeamConButton1">
+                <button type="button" class="btn btn-success btn-sm show" data-toggle="modal" data-target="#AddCon"
+                        style="text-align: right" id="UserAddConButton">添加比赛
+                </button>
+            </div>
+            <div class="col-sm-1" style="margin-top: 3px;margin-left: 0px;text-align: left" id="TeamConButton2">
+                <button type="button" class="btn btn-warning btn-sm show" data-toggle="modal" data-target="#DeleteCon"
+                        style="text-align: right" id="UserDeleteConButton">删除比赛
+                </button>
+            </div>
+        </div>
+
+        <div id="TeamInformationTable" class="hide">
+            <!--界面1-->
+            <div class="row" style="margin-top: 15px" >
+                <div class="col-md-12">
+                    <form class="form-horizontal" action="/TeamInformation?Team_id={{Team[0]['Team_id']}}&Type=1&Person2={{Person[1]}}&Person3={{Person[2]}}" method="post">
+                        <div class="form-group">
+                            <label for="TeamID" class="col-sm-1 control-label lead" style="font-size: 17px">Team_id</label>
+                            <div class="col-sm-11">
+                                <input type="TeamID" class="form-control" id="TeamID" placeholder="{{Team[0]['Team_id']}}"
+                                       name="TeamID" style="border-width: 0; " disabled>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="TeamName" class="col-sm-1 control-label lead" style="font-size: 17px">队伍名</label>
+                            <div class="col-sm-11">
+                                <input type="TeamName" class="form-control" id="TeamName" placeholder="{{Team[0]['Name']}}"
+                                       name="TeamName" style="border-width: 0; ">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="TeamPerson1" class="col-sm-1 control-label lead" style="font-size: 17px">队员1</label>
+                            <div class="col-sm-11">
+                                <input type="TeamPerson1" class="form-control" id="TeamPerson1" placeholder={{Person[0]}}
+                                       name="TeamPerson1" style="border-width: 0; " disabled>
+                            </div>
+                        </div>
+                        <div class="row hide" style="color: #761c19;margin-left: 20px" id="TeamInformationError1">查无此人</div>
+                        <div class="form-group">
+                            <label for="TeamPerson2" class="col-sm-1 control-label lead" style="font-size: 17px">队员2</label>
+                            <div class="col-sm-11">
+                                <input type="TeamPerson2" class="form-control" id="TeamPerson2" placeholder="{{Person[1]}}"
+                                       name="TeamPerson2" style="border-width: 0; ">
+                            </div>
+                        </div>
+                        <div class="row hide" style="color: #761c19;margin-left: 20px" id="TeamInformationError2">查无此人</div>
+                        <div class="form-group">
+                            <label for="TeamPerson3" class="col-sm-1 control-label lead" style="font-size: 17px">队员3</label>
+                            <div class="col-sm-11">
+                                <input type="TeamPerson3" class="form-control" id="TeamPerson3" placeholder="{{Person[2]}}"
+                                       name="TeamPerson3" style="border-width: 0; ">
+                            </div>
+                        </div>
+                        <div class="row hide" style="color: green;margin-left: 20px" id="TeamInformationError3">修改成功</div>
+                        <div class="row" style="height: 10px"></div>
+                        <div class="row">
+                            <button type="submit" class="btn btn-success" style="float: right; margin-right: 15px">修改
+                            </button>
+                            <a class="btn btn-danger" style="float: right; margin-right: 5px" href="/User?Type=-2">返回</a>
+                        </div>
+                        <div class="row" style="height: 100px"></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!--界面2 添加比赛-->
+        <form class="modal fade" id="AddCon" action="/TeamInformation?Team_id={{Team[0]['Team_id']}}&Type=2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" method="post">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel3">添加比赛</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group">
+                                <label for="TeamAddConID">比赛ID</label>
+                                <select id="TeamAddConID" class="form-control input-group" name="TeamAddConID">
+                                    {% for line in ConLen %}
+                                        {% if line['Contest_id'] not in [h['Contest_id'] for h in Contest] %}
+                                            <option>{{line['Contest_id']}}​&nbsp;​&nbsp;{{line['Name']}}</option>
+                                        {% end %}
+                                    {% end %}
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="TeamAddConRank1">排名</label>
+                                <input type="text" name="TeamAddConRank1" class="form-control input-group" id="TeamAddConRank1"
+                                    onkeyup="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}"
+                                       onafterpaste="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'0')}else{this.value=this.value.replace(/\D/g,'')}" />
+                            </div>
+                            <div class="form-group">
+                                <label for="TeamAddConRank2">总人数</label>
+                                <input type="text" name="TeamAddConRank2" class="form-control input-group" id="TeamAddConRank2"
+                                    onkeyup="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}"
+                                       onafterpaste="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'0')}else{this.value=this.value.replace(/\D/g,'')}" />
+                            </div>
+                            <div class="form-group">
+                                <label for="TeamAddConTime">罚时</label>
+                                <input type="text" name="TeamAddConTime" class="form-control input-group" id="TeamAddConTime"
+                                    onkeyup="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}"
+                                       onafterpaste="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'0')}else{this.value=this.value.replace(/\D/g,'')}" />
+                            </div>
+                            <div class="form-group">
+                                <label for="TeamAddConTAG">比赛TAG</label>
+                                <input id="TeamAddConTAG" class="form-control input-group" name="TeamAddConTAG">
+                            </div>
+                            <p class="hide" id="TeamAddConError2"
+                               style="font-size: 15px;margin-top: 10px;margin-bottom: 0px;color: green">添加成功</p>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">取消</button>
+                        <button type="submit" class="btn btn-primary">添加</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <!--界面2 删除比赛-->
+        <form class="modal fade" id="DeleteCon" action="/TeamInformation?Team_id={{Team[0]['Team_id']}}&Type=3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" method="post">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel31">删除题目</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group">
+                                <label for="TeamDeleteConID">比赛ID</label>
+                                <select id="TeamDeleteConID" class="form-control input-group"
+                                        name="TeamDeleteConID">
+                                    {% for line in Contest %}
+                                        <option>{{line['Contest_id']}}</option>
+                                    {% end %}
+                                </select>
+                            </div>
+                            <p class="hide" id="UserDeleteConError1"
+                               style="font-size: 15px;margin-top: 10px;margin-bottom: 0px;color: green">删除成功</p>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">取消</button>
+                        <button type="submit" class="btn btn-primary">删除</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <!--界面2 参加的比赛-->
+        <div class="show" id="TeamConTable">
+            <table class="table table-hover" style="margin-top: 30px" id="TeamConTable1">
+                <thead>
+                <tr>
+                    <th>Contest_ID</th>
+                    <th>Name</th>
+                    <th style="text-align: center;">排名 (名次/总人数)</th>
+                    <th style="text-align: center;">总罚时 (分)</th>
+                    <th style="text-align: center;">未完成题目数</th>
+                    <th style="text-align: center;">比赛时间</th>
+                    <th style="text-align: center;">比赛类型</th>
+                    <th>TAG</th>
+                </tr>
+                </thead>
+                <tbody>
+                    {% for line in Contest %}
+                        {% if line['Finish'] == 0 %}
+                            <tr class="success">
+                        {% else %}
+                            <tr>
+                        {% end %}
+                        <td>{{line['Contest_id']}}</td>
+                        <td><a href="/ConInformation?Contest_id={{line['Contest_id']}}&THP=2&Team_id={{Team[0]['Team_id']}}">{{line['Name']}}</a></td>
+                        <td style="text-align: center;">{{line['Rank']}}</td>
+                        <td style="text-align: center;">{{line['Time_total']}}</td>
+                        {% if line['Finish'] == 0 %}
+                            <td style="text-align: center;">{{line['Finish']}}</td>
+                        {% else %}
+                            <td style="text-align: center;"><font color="#cd5c5c">{{line['Finish']}}</font></td>
+                        {% end %}
+                        <td style="text-align: center;">{{line['Begin_time']}}</td>
+                        <td style="text-align: center;">{{line['Contest_type']}}</td>
+                        <td>{{line['TAG']}}</td>
+                    </tr>
+                    {% end %}
+                </tbody>
+            </table>
+        </div>
+        <div class="row hide" style="height: 200px" id="TeamCon3"></div>
+    </div>
+    </div>
+{% end %}
+
+{% block script %}
+<script>
+    document.getElementById("a1").className = "container hide";
+    document.getElementById("ax").className = "jumbotron show";
+    document.getElementById("a2").className = "jumbotron hide";
+    document.getElementById("a3").className = "jumbotron hide";
+    document.getElementById("a4").className = "jumbotron show";
+    document.getElementById("a5").className = "jumbotron hide";
+    function TeamInformation1() {
+        document.getElementById("TeamInformation").className = "active";
+        document.getElementById("TeamContest").className = "";
+        document.getElementById("TeamInformationTable").className = "show";
+        document.getElementById("UserAddConButton").className = "btn btn-success btn-sm hide";
+        document.getElementById("UserDeleteConButton").className = "btn btn-warning btn-sm hide";
+        document.getElementById("TeamCon3").className = "hide";
+        document.getElementById("TeamConTable").className = "hide";
+    }
+    function TeamContest1() {
+        document.getElementById("TeamInformation").className = "";
+        document.getElementById("TeamContest").className = "active";
+        document.getElementById("TeamInformationTable").className = "hide";
+        document.getElementById("UserAddConButton").className = "btn btn-success btn-sm show";
+        document.getElementById("UserDeleteConButton").className = "btn btn-warning btn-sm show";
+        document.getElementById("TeamCon3").className = "show";
+        document.getElementById("TeamConTable").className = "show";
+    }
+    {% if jud == '1' %}
+        TeamInformation1();
+        document.getElementById("TeamInformationError1").className = "row show";
+        $(document).mousedown(function () {
+            document.getElementById("TeamInformationError1").className = "row hide";
+        });
+    {% elif jud == '2' %}
+        TeamInformation1();
+        document.getElementById("TeamInformationError2").className = "row show";
+        $(document).mousedown(function () {
+            document.getElementById("TeamInformationError2").className = "row hide";
+        });
+    {% elif jud == '3' %}
+        TeamInformation1();
+        document.getElementById("TeamInformationError3").className = "row show";
+        $(document).mousedown(function () {
+            document.getElementById("TeamInformationError3").className = "row hide";
+        });
+    {% elif jud == '4' %}
+        TeamContest1();
+        document.getElementById("UserAddConButton").click();
+        document.getElementById("TeamAddConError2").className = "show";
+        $(document).mousedown(function () {
+            document.getElementById("TeamAddConError2").className = "hidden";
+        });
+    {% elif jud == '5' %}
+        TeamContest1();
+        document.getElementById("UserDeleteConButton").click();
+        document.getElementById("UserDeleteConError1").className = "show";
+        $(document).mousedown(function () {
+            document.getElementById("UserDeleteConError1").className = "hidden";
+        });
+    {% end %}
+
+    $('#TeamConTable1').DataTable({
+        dom: 'Bfrtip',
+        buttons: [
+            'pageLength',
+            {extend: 'excelHtml5', text: "导出Excel"},
+            {
+                extend: 'print',
+                text: '打印表格',
+                title: "",
+                exportOptions: {
+                    modifier: {
+                        page: 'current',
+                        columns: ':visible',
+                    }
+                }
+            }
+        ],
+        "pageLength": 20,
+        lengthMenu: [[10, 20, 50, 100, 200, -1], [10, 20, 50, 100, 200, "All"]],
+        'columnDefs': [
+            { "width": "16%", "targets": [1] },
+            { "width": "16%", "targets": [2] },
+            { "width": "11%", "targets": [3] },
+            { "width": "12%", "targets": [4] },
+            { "width": "10%", "targets": [5] },
+            { "width": "9%", "targets": [6] },
+            { "width": "40%", "targets": [7] }
+        ],
+        language: {
+            "sProcessing": "处理中...",
+            "sLengthMenu": "显示 _MENU_ 项结果",
+            "sZeroRecords": "没有匹配结果",
+            "sInfo": "显示第 _START_ 至 _END_ 项结果，共 _TOTAL_ 项",
+            "sInfoEmpty": "显示第 0 至 0 项结果，共 0 项",
+            "sInfoFiltered": "(由 _MAX_ 项结果过滤)",
+            "sInfoPostFix": "",
+            "sSearch": "搜索:",
+            "sUrl": "",
+            "sEmptyTable": "表中数据为空",
+            "sLoadingRecords": "载入中...",
+            "sInfoThousands": ",",
+            "oPaginate": {
+                "sFirst": "首页",
+                "sPrevious": "上页",
+                "sNext": "下页",
+                "sLast": "末页"
+            },
+            "oAria": {
+                "sSortAscending": ": 以升序排列此列",
+                "sSortDescending": ": 以降序排列此列"
+            }
+        },
+    });
+</script>
+{% end %}

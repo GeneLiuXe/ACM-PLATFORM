@@ -1,0 +1,142 @@
+{% extends "home.html" %}
+
+{% block Contest %}
+    <div class="container">
+        <ul class="nav nav-pills">
+            <li role="presentation" class="" style="margin-bottom: 30px" id="ConStore"><a href="/Contest">比赛集合</a></li>
+            <li role="presentation" class="active" style="margin-bottom: 30px" id="ConAdd"><a href="/AddContest">添加比赛</a></li>
+        </ul>
+        <div class="row show" style="margin-top: 0px" id="">
+            <div class="col-md-12">
+                <form class="form-horizontal" action="/AddConError" method="post">
+                    <div class="form-group">
+                        <label for="ConName" class="col-sm-2 control-label lead" style="font-size: 17px;text-align: center">比赛标题</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="ConName" name="Name"
+                                   style="border-width: 0; " placeholder="比赛标题">
+                        </div>
+                    </div>
+                    <!--<div class="form-group">-->
+                        <!--<label for="ConRank" class="col-sm-2 control-label lead" style="font-size: 17px;text-align: center">比赛排名</label>-->
+                        <!--<div class="col-sm-10">-->
+                            <!--<input type="text" class="form-control" id="ConRank" name="Rank"-->
+                                   <!--style="border-width: 0; " placeholder="排名/总人数">-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="form-group">-->
+                        <!--<label for="ConPenalty" class="col-sm-2 control-label lead" style="font-size: 17px;text-align: center">比赛罚时</label>-->
+                        <!--<div class="col-sm-10">-->
+                            <!--<input type="text" class="form-control" id="ConPenalty" name="Penalty"-->
+                                   <!--style="border-width: 0; " placeholder="比赛罚时"-->
+                            <!--onkeyup="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}"-->
+                                <!--onafterpaste="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'0')}else{this.value=this.value.replace(/\D/g,'')}" >-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <div class="form-group">
+                        <label for="ConStartTime" class="col-sm-2 control-label lead" style="font-size: 17px;text-align: center">开始时间</label>
+                        <div class="col-sm-10">
+                            <!--格式：YYYY-MM-DD-->
+                            <input type="text" class="form-control" id="ConStartTime" name="StartTime" style="border-width: 0; " placeholder="[格式]​&nbsp;​&nbsp;YYYY-MM-DD HH:MM"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="ConEndTime" class="col-sm-2 control-label lead" style="font-size: 17px;text-align: center">结束时间</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="ConEndTime" name="EndTime" style="border-width: 0; " placeholder="[格式]​&nbsp;​&nbsp;YYYY-MM-DD HH:MM">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="ConEndTime" class="col-sm-2 control-label lead" style="font-size: 17px;text-align: center">比赛链接</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="ConLink" name="Link" style="border-width: 0; " placeholder="比赛链接">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="ConType" class="col-sm-2 control-label lead" style="font-size: 17px;text-align: center">比赛类型</label>
+                        <div class="col-sm-10">
+                            <select id="ConType" class="form-control input-group" name="Type"
+                                    style="border-width: 0; ">
+                                <option>省赛</option>
+                                <option>CCPC</option>
+                                <option>ICPC</option>
+                                <option>邀请赛</option>
+                                <option>AtCoder</option>
+                                <option>Gym 3星场</option>
+                                <option>Gym 4星场</option>
+                                <option>Gym 5星场</option>
+                                <option>CSP 个人赛</option>
+                                <option>多校训练赛</option>
+                                <option>校内选拔赛</option>
+                                <option>个人专题训练</option>
+                                <option>队内专题训练</option>
+                                <option>Codeforces Div1</option>
+                                <option>Codeforces Div2</option>
+                                <option>Codeforces Div3</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row hide" id="AddConError1" style="margin-top: 30px">
+                        <div class="col-md-2" style="text-align: center">
+                            <p style="color: #CD3333;font-size: 17px;">比赛标题不得为空</p>
+                        </div>
+                    </div>
+                    <!--<div class="row hide" id="AddConError2" style="margin-top: 30px">-->
+                        <!--<div class="col-md-2" style="text-align: center">-->
+                            <!--<p style="color: #CD3333;font-size: 17px;">比赛排名不得为空</p>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="row hide" id="AddConError3" style="margin-top: 30px">-->
+                        <!--<div class="col-md-2" style="text-align: center">-->
+                            <!--<p style="color: #CD3333;font-size: 17px;">比赛罚时不得为空</p>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <div class="row hide" id="AddConError2" style="margin-top: 30px">
+                        <div class="col-md-2" style="text-align: center">
+                            <p style="color: #CD3333;font-size: 17px;">开始时间不得为空</p>
+                        </div>
+                    </div>
+                    <div class="row hide" id="AddConError3" style="margin-top: 30px">
+                        <div class="col-md-2" style="text-align: center">
+                            <p style="color: #CD3333;font-size: 17px;">结束时间不得为空</p>
+                        </div>
+                    </div>
+                    <div class="row hide" id="AddConError4" style="margin-top: 30px">
+                        <div class="col-md-2" style="text-align: center">
+                            <p style="color: #CD3333;font-size: 17px;">比赛链接不得为空</p>
+                        </div>
+                    </div>
+                    <div class="row hide" id="AddConError5" style="margin-top: 30px">
+                        <div class="col-md-2" style="text-align: center">
+                            <p style="color: green;font-size: 17px;">添加成功</p>
+                        </div>
+                    </div>
+                    <div class="row" style="height: 25px"></div>
+                    <div class="row">
+                        <button type="submit" class="btn btn-success" style="float: right; margin-right: 15px">添加
+                        </button>
+                        <a class="btn btn-danger" style="float: right; margin-right: 5px" href="/Contest">返回</a>
+                    </div>
+                    <div class="row" style="height: 100px"></div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% end %}
+
+{% block script %}
+<script>
+    document.getElementById("a1").className="container hide";
+    document.getElementById("ax").className="jumbotron show";
+    document.getElementById("a2").className="jumbotron hide";
+    document.getElementById("a3").className="jumbotron show";
+    document.getElementById("a4").className="jumbotron hide";
+    document.getElementById("a5").className="jumbotron hide";
+    if({{jud}} != '0'){
+        tmp = "AddConError"+{{jud}}
+        document.getElementById(tmp).className="show";
+        $(document).mousedown(function(){
+            document.getElementById(tmp).className="hidden";
+        });
+    }
+</script>
+{% end %}

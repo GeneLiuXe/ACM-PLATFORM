@@ -1,0 +1,196 @@
+{% extends "home.html" %}
+
+{% block Contest %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-1" style="margin-top: 22px">
+                <h2 class="label label-primary" style="font-size: 20px">比赛标题</h2>
+            </div>
+            <div class="col-md-9">
+                <h2 class="lead" style="font-size: 20px;margin-left: 30px">{{stus[0]['Name']}}​&nbsp;​&nbsp;​&nbsp;<font color="#9AC0CD"><strong>[ID: {{stus[0]['Contest_id']}}]</strong></font></h2>
+            </div>
+            <!--添加题目-->
+            <div class="col-md-1" style="margin-top: 11px">
+                <button type="button" class="btn btn-success btn-sm" style="font-size: 8px" data-toggle="modal" data-target="#AddPro" id="AddConButton">
+                    添加题目
+                </button>
+                <form class="modal fade" id="AddPro" action="/ConInformation?Contest_id={{stus[0]['Contest_id']}}&THP=1&Type=1" method="post">
+                    <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">添加题目</h4>
+                      </div>
+                      <div class="modal-body">
+                        <form>
+                            <div class="form-group">
+                                <label for="ConProblemID">题目ID</label>
+                                <select id="ConProblemID" class="form-control input-group" name="ConProblemID">
+                                    {% for line in ProLen %}
+                                        {% if line['Problem_id'] not in [h['Problem_id'] for h in Problem] %}
+                                            <option>{{line['Problem_id']}}​&nbsp;​&nbsp;{{line['Problem_name']}}</option>
+                                        {% end %}
+                                    {% end %}
+                                </select>
+                            </div>
+                            <p class="hide" id="AddConError1" style="font-size: 15px;margin-top: 10px;margin-bottom: 0px;color: red">此题目已添加</p>
+                            <p class="hide" id="AddConError2" style="font-size: 15px;margin-top: 10px;margin-bottom: 0px;color: green">添加成功</p>
+                        </form>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">取消</button>
+                        <button type="submit" class="btn btn-primary">添加</button>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+            </div>
+            <!--删除题目-->
+            <div class="col-md-1" style="margin-top: 11px">
+                <button type="button" class="btn btn-warning btn-sm" style="font-size: 8px" data-toggle="modal" data-target="#DelPro" id="DelConButton">
+                    删除题目
+                </button>
+                <form class="modal fade" id="DelPro" action="/ConInformation?Contest_id={{stus[0]['Contest_id']}}&THP=1&Type=2" method="post">
+                    <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myDelModalLabel">删除题目</h4>
+                      </div>
+                      <div class="modal-body">
+                        <form>
+                            <div class="form-group">
+                                <label for="DelConProblemID">题目ID</label>
+                                <select id="DelConProblemID" class="form-control input-group" name="ConProblemID">
+                                    {% for line in Problem %}
+                                        <option>{{line['Problem_id']}}​&nbsp;​&nbsp;{{line['Problem_name']}}</option>
+                                    {% end %}
+                                </select>
+                            </div>
+                            <p class="hide" id="DelConError1" style="font-size: 15px;margin-top: 10px;margin-bottom: 0px;color: red">此题目已添加</p>
+                            <p class="hide" id="DelConError2" style="font-size: 15px;margin-top: 10px;margin-bottom: 0px;color: green">删除成功</p>
+                        </form>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">取消</button>
+                        <button type="submit" class="btn btn-primary">删除</button>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+            </div>
+        </div>
+        <table class="table table-hover" style="margin-top: 30px;" id="ConProblemTable">
+            <thead>
+            <tr>
+                <th style="text-align: center;"></th>
+                <th style="text-align: center;">ID</th>
+                <th style="text-align: center;">OJ&nbsp;&&nbsp;Number</th>
+                <th style="text-align: center;">标题</th>
+                <th>难度</th>
+                <th>算法</th>
+                <th style="text-align: center;">TAG</th>
+                <th style="text-align: center;">Link</th>
+            </tr>
+            </thead>
+            <tbody>
+                {% for line in Problem %}
+                <tr>
+                    {% if line['TAG'] != "" %}
+                        <td><span class="label label-success" style="font-size: 5px">Solved</span></td>
+                    {% else %}
+                        <td></td>
+                    {% end %}
+                    <td>{{line['Problem_id']}}</td>
+                    <td style="text-align: center;"><strong>{{line['OJ']}}</strong>
+                        <small>​&nbsp;​&nbsp;{{line['OJ_Pnumber']}}</small></td>
+                    {% if line['Link'] != 'NULL' %}
+                        <td style="text-align: center;"><a href="{{line['Link']}}">{{line['Problem_name']}}</a></td>
+                    {% else %}
+                        <td style="text-align: center;"><a href="#">{{line['Problem_name']}}</a></td>
+                    {% end %}
+                    <td>{{line['Difficulty']}}</td>
+                    <td>{{line['Algorithm']}}</td>
+                    <td>{{line['TAG']}}</td>
+                    {% if line['Solution_Link'] != "" %}
+                        <td><a href="{{line['Solution_Link']}}">题解</a></td>
+                    {% else %}
+                        <td></td>
+                    {% end %}
+                </tr>
+                {% end %}
+            </tbody>
+        </table>
+        <div class="row" style="height: {{Length*1.3}}px"></div>
+    </div>
+{% end %}
+
+{% block script %}
+<script>
+    document.getElementById("a1").className="container hide";
+    document.getElementById("ax").className="jumbotron show";
+    document.getElementById("a2").className="jumbotron hide";
+    document.getElementById("a3").className="jumbotron show";
+    document.getElementById("a4").className="jumbotron hide";
+    document.getElementById("a5").className="jumbotron hide";
+    {% if jud == '1' %}
+        document.getElementById("AddConButton").click();
+        document.getElementById("AddConError1").className="show";
+        $(document).mousedown(function(){
+            document.getElementById("AddConError1").className="hidden";
+        });
+    {% elif jud == '2' %}
+        document.getElementById("AddConButton").click();
+        document.getElementById("AddConError2").className="show";
+        $(document).mousedown(function(){
+            document.getElementById("AddConError2").className="hidden";
+        });
+    {% elif jud == '3' %}
+        document.getElementById("DelConButton").click();
+        document.getElementById("DelConError2").className="show";
+        $(document).mousedown(function(){
+            document.getElementById("DelConError2").className="hidden";
+        });
+    {% end %}
+    $('#ConProblemTable').DataTable({
+        dom: 'Bfrtip',
+        buttons: [
+        ],
+        searching: false,
+        paging: false,
+        info: false,
+        columnDefs: [
+            { "width": "15%", "targets": [2] },
+            { "width": "30%", "targets": [3] },
+            { "width": "7%", "targets": [4] },
+            { "width": "7%", "targets": [5] },
+            { "orderable": false, "targets": [0]}
+        ],
+        order: [],
+        language: {
+            "sProcessing": "处理中...",
+            "sLengthMenu": "显示 _MENU_ 项结果",
+            "sZeroRecords": "没有匹配结果",
+            "sInfo": "显示第 _START_ 至 _END_ 项结果，共 _TOTAL_ 项",
+            "sInfoEmpty": "显示第 0 至 0 项结果，共 0 项",
+            "sInfoFiltered": "(由 _MAX_ 项结果过滤)",
+            "sInfoPostFix": "",
+            "sSearch": "搜索:",
+            "sUrl": "",
+            "sEmptyTable": "表中数据为空",
+            "sLoadingRecords": "载入中...",
+            "sInfoThousands": ",",
+            "oPaginate": {
+                "sFirst": "首页",
+                "sPrevious": "上页",
+                "sNext": "下页",
+                "sLast": "末页"
+            },
+            "oAria": {
+                "sSortAscending": ": 以升序排列此列",
+                "sSortDescending": ": 以降序排列此列"
+            }
+        },
+    });
+</script>
+{% end %}

@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>index</title>
+    <link rel="stylesheet" href="../bs/css/bootstrap.css">
+    <script src="../bs/js/jquery.min.js"></script>
+    <script src="../bs/js/bootstrap.js"></script>
+    <style>
+        body{
+            background-image: url("../image/back.jpg");
+            background-size: 1600px;
+            height: 700px;
+        }
+        *{
+            font-family: 微软雅黑;
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav nav-pills" style="background: transparent">
+    <!--<nav class="navbar navbar-default" style="background: transparent">-->
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#" style="color: #5bc0de; font-size: 60px;font-family: 'DIN Condensed';margin-top: 20px">ACM</a>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <button type="button" class="btn btn-danger navbar-btn" style="margin-top: 20px" data-toggle="modal" data-target="#register">注册</button>
+                    <button type="button" class="btn btn-success navbar-btn" style="margin-top: 20px" data-toggle="modal" data-target="#enter">登录</button>
+                    <div id="register" class="modal fade">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <div class="close" data-dismiss="modal">&times;</div>
+                                    <h3 style="text-align: center">注册</h3>
+                                </div>
+                                <div class="modal-body">
+                                    <form>
+                                        <div class="form-group">
+                                            <label for="PersonID">账号</label>
+                                            <input type="PersonID" class="form-control" id="PersonID" placeholder="账号">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="PersonName">姓名</label>
+                                            <input type="PersonName" class="form-control" id="PersonName" placeholder="姓名">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="PersonSex">性别</label>
+                                            <select id="PersonSex" class="form-control input-group">
+                                                <option>男</option>
+                                                <option>女</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="PersonSchool">学校</label>
+                                            <select id="PersonSchool" class="form-control input-group">
+                                                <option>清华大学</option>
+                                                <option>北京大学</option>
+                                                <option>浙江大学</option>
+                                                <option>复旦大学</option>
+                                                <option>上海交通大学</option>
+                                                <option>武汉大学</option>
+                                                <option>中国人民大学</option>
+                                                <option>山东大学</option>
+                                                <option>北京航空航天大学</option>
+                                                <option>杭州电子科技大学</option>
+                                                <option>北京交通大学</option>
+                                                <option>北京工业大学</option>
+                                                <option>北京理工大学</option>
+                                                <option>北京科技大学</option>
+                                                <option>北京化工大学</option>
+                                                <option>北京邮电大学</option>
+                                                <option>中国农业大学</option>
+                                                <option>北京林业大学</option>
+                                                <option>中国传媒大学</option>
+                                                <option>中央民族大学</option>
+                                                <option>北京师范大学</option>
+                                                <option>中国石油大学</option>
+                                                <option>华东师范大学</option>
+                                                <option>上海外国语大学</option>
+                                                <option>东华大学</option>
+                                                <option>上海财经大学</option>
+                                                <option>同济大学</option>
+                                                <option>华东理工大学</option>
+                                                <option>上海大学</option>
+                                                <option>南开大学</option>
+                                                <option>天津大学</option>
+                                                <option>天津医科大学</option>
+                                                <option>重庆大学</option>
+                                                <option>西南大学</option>
+                                                <option>河北工业大学</option>
+                                                <option>太原理工大学</option>
+                                                <option>大连理工大学</option>
+                                                <option>东北大学</option>
+                                                <option>辽宁大学</option>
+                                                <option>吉林大学</option>
+                                                <option>东北师范大学</option>
+                                                <option>哈尔滨工业大学</option>
+                                                <option>哈尔滨理工大学</option>
+                                                <option>哈尔滨工程大学</option>
+                                                <option>南京大学</option>
+                                                <option>东南大学</option>
+                                                <option>苏州大学</option>
+                                                <option>南京师范大学</option>
+                                                <option>中国矿业大学</option>
+                                                <option>河海大学</option>
+                                                <option>南京航空航天大学</option>
+                                                <option>江南大学</option>
+                                                <option>南京理工大学</option>
+                                                <option>中国科学技术大学</option>
+                                                <option>安徽大学</option>
+                                                <option>合肥工业大学</option>
+                                                <option>厦门大学</option>
+                                                <option>福州大学</option>
+                                                <option>南昌大学</option>
+                                                <option>中国海洋大学</option>
+                                                <option>中国石油大学(华东)</option>
+                                                <option>山东科技大学</option>
+                                                <option>山东财经大学</option>
+                                                <option>山东理工大学</option>
+                                                <option>山东师范大学</option>
+                                                <option>郑州大学</option>
+                                                <option>华中科技大学</option>
+                                                <option>中国地质大学(武汉)</option>
+                                                <option>武汉理工大学</option>
+                                                <option>华中师范大学</option>
+                                                <option>华中农业大学</option>
+                                                <option>中南财经政法大学</option>
+                                                <option>湖南大学</option>
+                                                <option>中南大学</option>
+                                                <option>湖南师范大学</option>
+                                                <option>华南师范大学</option>
+                                                <option>暨南大学</option>
+                                                <option>华南理工大学</option>
+                                                <option>中山大学</option>
+                                                <option>广西大学</option>
+                                                <option>四川大学</option>
+                                                <option>西南交通大学</option>
+                                                <option>电子科技大学</option>
+                                                <option>四川农业大学</option>
+                                                <option>西南财经大学</option>
+                                                <option>云南大学</option>
+                                                <option>贵州大学</option>
+                                                <option>西北大学</option>
+                                                <option>西安交通大学</option>
+                                                <option>西北工业大学</option>
+                                                <option>西安电子科技大学</option>
+                                                <option>长安大学</option>
+                                                <option>西北农林大学</option>
+                                                <option>浙江大学城市学院</option>
+                                                <option>浙江理工大学</option>
+                                                <option>浙江工业大学</option>
+                                                <option>宁波大学</option>
+                                                <option>浙江师范大学</option>
+                                                <option>浙江科技大学</option>
+                                                <option>浙江科技大学</option>
+                                                <option>浙江中医药大学</option>
+                                                <option>温州医科大学</option>
+                                                <option>麻省理工大学</option>
+                                                <option>哈佛大学</option>
+                                                <option>塔夫茨大学</option>
+                                                <option>波士顿大学</option>
+                                                <option>东北大学</option>
+                                                <option>芝加哥大学</option>
+                                                <option>伊利诺伊大学</option>
+                                                <option>西北大学</option>
+                                                <option>伊利诺伊理工学院</option>
+                                                <option>芝加哥州立大学</option>
+                                                <option>斯坦福大学</option>
+                                                <option>加州大学伯克利分校</option>
+                                                <option>西北理工大学</option>
+                                                <option>旧金山大学</option>
+                                                <option>加利福尼亚大学旧金山分校</option>
+                                                <option>加州理工大学</option>
+                                                <option>哥伦比亚大学</option>
+                                                <option>纽约城市大学</option>
+                                                <option>加利福尼亚大学圣地亚哥分校</option>
+                                                <option>华盛顿大学</option>
+                                                <option>华盛顿大学</option>
+                                                <option>牛津大学</option>
+                                                <option>帝国理工学院</option>
+                                                <option>伦敦大学</option>
+                                                <option>剑桥大学</option>
+                                                <option>莫斯科国立大学</option>
+                                                <option>圣彼得堡国立大学</option>
+                                                <option>新西伯利亚国立大学</option>
+                                                <option>东京大学</option>
+                                                <option>京都大学</option>
+                                                <option>东京工业大学</option>
+                                                <option>早稻田大学</option>
+                                                <option>香港大学</option>
+                                                <option>香港理工大学</option>
+                                                <option>新加坡国立大学</option>
+
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="PersonGrade">入学年份</label>
+                                            <select id="PersonGrade" class="form-control input-group">
+                                                <option>2019</option>
+                                                <option>2018</option>
+                                                <option>2017</option>
+                                                <option>2016</option>
+                                                <option>2015</option>
+                                                <option>2014</option>
+                                                <option>2013</option>
+                                                <option>2012</option>
+                                                <option>2011</option>
+                                                <option>2010</option>
+                                                <option>2009</option>
+                                                <option>2008</option>
+                                                <option>2007</option>
+                                                <option>2006</option>
+                                                <option>2005</option>
+                                                <option>2004</option>
+                                                <option>2003</option>
+                                                <option>2002</option>
+                                                <option>2001</option>
+                                                <option>2000</option>
+                                                <option>1999</option>
+                                                <option>1998</option>
+                                                <option>1997</option>
+                                                <option>1996</option>
+                                                <option>1995</option>
+                                                <option>1994</option>
+                                                <option>1993</option>
+                                                <option>1992</option>
+                                                <option>1991</option>
+                                                <option>1990</option>
+                                                <option>1989</option>
+                                                <option>1988</option>
+                                                <option>1987</option>
+                                                <option>1986</option>
+                                                <option>1985</option>
+                                                <option>1984</option>
+                                                <option>1983</option>
+                                                <option>1982</option>
+                                                <option>1981</option>
+                                                <option>1980</option>
+                                                <option>1979</option>
+                                                <option>1978</option>
+
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="PersonMajor">专业</label>
+                                            <input type="PersonMajor" class="form-control" id="PersonMajor" placeholder="专业">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="PersonClass">班级</label>
+                                            <input type="PersonClass" class="form-control" id="PersonClass" placeholder="班级">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="PersonLab">所属实验室名称</label>
+                                            <input type="PersonLab" class="form-control" id="PersonLab" placeholder="所属实验室名称">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="PersonSerect">密码</label>
+                                            <input type="PersonSerect" class="form-control" id="PersonSerect" placeholder="密码">
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button class="btn btn-danger" data-dismiss="modal">取消</button>
+                                    <button class="btn btn-primary" data-dismiss="modal">提交</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="enter" class="modal fade">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <div class="close" data-dismiss="modal">&times;</div>
+                                    <h3 style="text-align: center">登录</h3>
+                                </div>
+                                <div class="modal-body">
+                                    <form>
+                                        <div class="form-group">
+                                            <label for="InputAccount">账号</label>
+                                            <input type="Account" class="form-control" id="InputAccount" placeholder="账号">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="InputPassword">密码</label>
+                                            <input type="password" class="form-control" id="InputPassword" placeholder="密码">
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button class="btn btn-danger" data-dismiss="modal">取消</button>
+                                    <a class="btn btn-primary" href="ui/homepage.html">登录</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="row" style="height: 100px"></div>
+        <div class="row" style="height: 100px"></div>
+        <div class="row" style="height: 100px">
+            <div class="col-md-12" style="text-align: center">
+                <font size="20" style="color: #9acfea">ACM训练管理平台</font>
+                <hr style="filter: progid:dximagetransform.microsoft.shadow(color:#987cb9,direction:145,strength:15)" width="80%" color="#987cb9" size=1>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

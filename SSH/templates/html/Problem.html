@@ -1,0 +1,236 @@
+{% extends "home.html" %}
+
+{% block Problem %}
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-10">
+                <ul class="nav nav-pills">
+                    <li role="presentation" class="active" style="margin-bottom: 30px" id="ProStore"><a href="/Problem">题目集合</a></li>
+                    <li role="presentation" class="" style="margin-bottom: 30px" id="Algorithm"><a href="/Algorithm">算法分类</a></li>
+                </ul>
+            </div>
+            <div class="col-sm-1 hide" style="margin-top: 3px;margin-right: 0px;text-align: right" id="FinishedProButton1">
+                <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#AddPro"
+                        style="text-align: right" id="UserAddProButton">添加题目
+                </button>
+            </div>
+            <div class="col-sm-1 hide" style="margin-top: 3px;margin-left: 0px;text-align: left" id="FinishedProButton2">
+                <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#DeletePro"
+                        style="text-align: right" id="UserDeleteProButton">删除题目
+                </button>
+            </div>
+        </div>
+        <!--界面1-->
+        <form class="modal fade" id="AddPro" action="/Problem?Type=1" tabindex="-1" role="dialog"
+              aria-labelledby="myModalLabel" method="post">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">添加题目</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group">
+                                <label for="AddProblemName">题目标题</label>
+                                <input id="AddProblemName" class="form-control input-group" name="AddProblemName">
+                            </div>
+                            <div class="form-group">
+                                <label for="AddProblemOJ">题目OJ</label>
+                                <select id="AddProblemOJ" class="form-control input-group" name="AddProblemOJ">
+                                    <option>AtCoder</option>
+                                    <option>BZOJ</option>
+                                    <option>Comet OJ</option>
+                                    <option>Codeforces</option>
+                                    <option>51nod</option>
+                                    <option>Gym</option>
+                                    <option>HDU</option>
+                                    <option>CodeVS</option>
+                                    <option>LuoguOJ</option>
+                                    <option>LYD 题库</option>
+                                    <option>牛客</option>
+                                    <option>计蒜客</option>
+                                    <option>POJ</option>
+                                    <option>SPOJ</option>
+                                    <option>SDUOJ</option>
+                                    <option>TsinghuaOJ</option>
+                                    <option>CodeChef</option>
+                                    <option>UVA</option>
+                                    <option>Vijos</option>
+                                    <option>Vjudge</option>
+                                    <option>ZOJ</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="AddProblemOJ_Pnumber">OJ_Pnumber</label>
+                                <input id="AddProblemOJ_Pnumber" class="form-control input-group" name="AddProblemOJ_Pnumber">
+                            </div>
+                            <div class="form-group">
+                                <label for="AddProblemDifficulty">题目难度</label>
+                                <select id="AddProblemDifficulty" class="form-control input-group" name="AddProblemDifficulty">
+                                    <option>入门</option>
+                                    <option>进阶</option>
+                                    <option>挑战</option>
+                                    <option>大师</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="AddProblemAlgorithm">题目算法</label>
+                                <input id="AddProblemAlgorithm" class="form-control input-group" name="AddProblemAlgorithm">
+                            </div>
+                            <div class="form-group">
+                                <label for="AddProblemLink">题目链接</label>
+                                <input id="AddProblemLink" class="form-control input-group" name="AddProblemLink">
+                            </div>
+                            <p class="hide" id="AddProError1"
+                               style="font-size: 15px;margin-top: 10px;margin-bottom: 0px;color: green">添加成功</p>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">取消</button>
+                        <button type="submit" class="btn btn-primary">添加</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <form class="modal fade" id="DeletePro" action="/Problem?Type=2" tabindex="-1" role="dialog"
+              aria-labelledby="myModalLabel" method="post">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel2">删除题目</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group">
+                                <label for="DeleteProblemID">题目ID</label>
+                                <select id="DeleteProblemID" class="form-control input-group"
+                                        name="DeleteProblemID">
+                                    {% for line in Problem %}
+                                    <option>{{line['Problem_id']}}</option>
+                                    {% end %}
+                                </select>
+                            </div>
+                            <p class="hide" id="DeleteProError1"
+                               style="font-size: 15px;margin-top: 10px;margin-bottom: 0px;color: green">删除成功</p>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">取消</button>
+                        <button type="submit" class="btn btn-primary">删除</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <table id="ProTable" class="display table table-hover">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>OJ&nbsp;&&nbsp;Number</th>
+                <th>标题</th>
+                <th>难度</th>
+                <th>算法</th>
+            </tr>
+            </thead>
+            <tbody>
+                {% for line in Problem %}
+                <tr>
+                    <td>{{line['Problem_id']}}</td>
+                    <td><strong>{{line['OJ']}}</strong>
+                        <small>​&nbsp;​&nbsp;{{line['OJ_Pnumber']}}</small></td>
+                    {% if line['Link'] != 'NULL' %}
+                        <td><a href="{{line['Link']}}">{{line['Problem_name']}}</a></td>
+                    {% else %}
+                    <td><a href="#">{{line['Problem_name']}}</a></td>
+                    {% end %}
+                    <td>{{line['Difficulty_level']}}</td>
+                    <td>{{line['Algorithm']}}</td>
+                </tr>
+                {% end %}
+            </tbody>
+        </table>
+    </div>
+{% end %}
+
+{% block script %}
+<script>
+    {% if jud == '2' %}
+        document.getElementById("UserAddProButton").click();
+        document.getElementById("AddProError1").className = "show";
+        $(document).mousedown(function () {
+            document.getElementById("AddProError1").className = "hidden";
+        });
+    {% elif jud == '3' %}
+        document.getElementById("UserDeleteProButton").click();
+        document.getElementById("DeleteProError1").className = "show";
+        $(document).mousedown(function () {
+            document.getElementById("DeleteProError1").className = "hidden";
+        });
+    {% end %}
+
+    {% if level[0]['level'] == 'owner' %}
+        document.getElementById("FinishedProButton1").className="col-sm-1 show";
+        document.getElementById("FinishedProButton2").className="col-sm-1 show";
+    {% else %}
+        document.getElementById("FinishedProButton1").className="col-sm-1 hide";
+        document.getElementById("FinishedProButton2").className="col-sm-1 hide";
+    {% end %}
+
+    document.getElementById("a1").className="container hide";
+    document.getElementById("ax").className="jumbotron show";
+    document.getElementById("a2").className="jumbotron show";
+    document.getElementById("a3").className="jumbotron hide";
+    document.getElementById("a4").className="jumbotron hide";
+    document.getElementById("a5").className="jumbotron hide";
+    $(document).ready(function () {
+        $('#ProTable').DataTable();
+    });
+    $('#ProTable').DataTable({
+        dom: 'Bfrtip',
+        buttons: [
+            'pageLength',
+            {extend: 'excelHtml5', text: "导出Excel"},
+            {
+                extend: 'print',
+                text: '打印表格',
+                title: "",
+                exportOptions: {
+                    modifier: {
+                        page: 'current',
+                        columns: ':visible',
+                    }
+                }
+            }
+        ],
+        "pageLength": 20,
+        lengthMenu: [[10, 20, 50, 100, 200, -1], [10, 20, 50, 100, 200, "All"]],
+        language: {
+            "sProcessing": "处理中...",
+            "sLengthMenu": "显示 _MENU_ 项结果",
+            "sZeroRecords": "没有匹配结果",
+            "sInfo": "显示第 _START_ 至 _END_ 项结果，共 _TOTAL_ 项",
+            "sInfoEmpty": "显示第 0 至 0 项结果，共 0 项",
+            "sInfoFiltered": "(由 _MAX_ 项结果过滤)",
+            "sInfoPostFix": "",
+            "sSearch": "搜索:",
+            "sUrl": "",
+            "sEmptyTable": "表中数据为空",
+            "sLoadingRecords": "载入中...",
+            "sInfoThousands": ",",
+            "oPaginate": {
+                "sFirst": "首页",
+                "sPrevious": "上页",
+                "sNext": "下页",
+                "sLast": "末页"
+            },
+            "oAria": {
+                "sSortAscending": ": 以升序排列此列",
+                "sSortDescending": ": 以降序排列此列"
+            }
+        },
+    });
+</script>
+{% end %}

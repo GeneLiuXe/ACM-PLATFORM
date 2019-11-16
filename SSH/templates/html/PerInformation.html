@@ -1,0 +1,208 @@
+{% extends "home.html" %}
+
+{% block PerInformation %}
+    <div class="container" style="margin-top: 0px">
+        <ul class="nav nav-pills">
+            <li role="presentation" class="active" style="margin-bottom: 30px" id="Perli" onclick="PerInformation()"><a>个人信息</a></li>
+            <li role="presentation" class="" style="margin-bottom: 30px" id="Serectli" onclick="PerSerect()"><a>修改密码</a></li>
+        </ul>
+        <div class="row" style="height: 10px"></div>
+        <div class="row show" style="margin-top: 0px" id="PerInformation">
+            <div class="col-md-12">
+                <!--<div class="jumbotron">-->
+                <form class="form-horizontal" action="/PerInformation" method="post">
+                    <div class="form-group">
+                        <label for="PersonName" class="col-sm-1 control-label lead" style="font-size: 17px">姓名</label>
+                        <div class="col-sm-11">
+                            <input type="PersonName" class="form-control" id="PersonName" placeholder={{Person['Name']}}
+                                   name="Name" style="border-width: 0; ">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="PersonGender" class="col-sm-1 control-label lead" style="font-size: 17px">性别</label>
+                        <div class="col-sm-11">
+                            <select id="PersonGender" class="form-control input-group" name="Gender"
+                                    style="border-width: 0; ">
+                                <option>{{Person['Gender']}}</option>
+                                <option></option>
+                                <option>男</option>
+                                <option>女</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="PersonSchool" class="col-sm-1 control-label lead" style="font-size: 17px">学校</label>
+                        <div class="col-sm-11">
+                            <select id="PersonSchool" class="form-control input-group" name="School"
+                                    style="border-width: 0; ">
+                                <option>{{Person['School_id']}}</option>
+                                <option></option>
+                                {% for line in School %}
+                                <option>{{line['Name']}}</option>
+                                {% end %}
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="PersonGrade" class="col-sm-1 control-label lead" style="font-size: 17px">年级</label>
+                        <div class="col-sm-11">
+                            <select id="PersonGrade" class="form-control input-group" name="Grade"
+                                    style="border-width: 0; ">
+                                <option>{{Person['Grade']}}</option>
+                                <option></option>
+                                <option>2019</option>
+                                <option>2018</option>
+                                <option>2017</option>
+                                <option>2016</option>
+                                <option>2015</option>
+                                <option>2014</option>
+                                <option>2013</option>
+                                <option>2012</option>
+                                <option>2011</option>
+                                <option>2010</option>
+                                <option>2009</option>
+                                <option>2008</option>
+                                <option>2007</option>
+                                <option>2006</option>
+                                <option>2005</option>
+                                <option>2004</option>
+                                <option>2003</option>
+                                <option>2002</option>
+                                <option>2001</option>
+                                <option>2000</option>
+                                <option>1999</option>
+                                <option>1998</option>
+                                <option>1997</option>
+                                <option>1996</option>
+                                <option>1995</option>
+                                <option>1994</option>
+                                <option>1993</option>
+                                <option>1992</option>
+                                <option>1991</option>
+                                <option>1990</option>
+                                <option>1989</option>
+                                <option>1988</option>
+                                <option>1987</option>
+                                <option>1986</option>
+                                <option>1985</option>
+                                <option>1984</option>
+                                <option>1983</option>
+                                <option>1982</option>
+                                <option>1981</option>
+                                <option>1980</option>
+                                <option>1979</option>
+                                <option>1978</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="PersonMajor" class="col-sm-1 control-label lead" style="font-size: 17px">专业</label>
+                        <div class="col-sm-11">
+                            <input type="PersonMajor" class="form-control" id="PersonMajor" placeholder={{Person['Major']}}
+                                   name="Major" style="border-width: 0; ">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="PersonClass" class="col-sm-1 control-label lead" style="font-size: 17px">班级</label>
+                        <div class="col-sm-11">
+                            <input type="PersonClass" class="form-control" id="PersonClass" placeholder={{Person['Class']}}
+                                   name="Class" style="border-width: 0; ">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="PersonLab" class="col-sm-1 control-label lead" style="font-size: 17px">实验室</label>
+                        <div class="col-sm-11">
+                            <select id="PersonLab" class="form-control input-group" name="Lab"
+                                    style="border-width: 0; ">
+                                <option>{{Person['Lab_id']}}</option>
+                                <option></option>
+                                {% for line in Lab%}
+                                <option>{{line['Name']}}</option>
+                                {% end %}
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row" style="height: 10px"></div>
+                    <div class="row">
+                        <button type="submit" class="btn btn-success" style="float: right; margin-right: 15px">保存
+                        </button>
+                        <a class="btn btn-danger" style="float: right; margin-right: 5px" href="/HomePage">返回</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="row hide" style="margin-top: 0px" id="PerSerect">
+            <div class="col-md-12">
+                <form class="form-horizontal" action="/ChangeSerect" method="post">
+                    <div class="form-group">
+                        <label for="OldSerect" class="col-sm-1 control-label lead" style="font-size: 17px">原密码</label>
+                        <div class="col-sm-11">
+                            <input type="password" class="form-control" id="OldSerect" name="OldSerect"
+                                   style="border-width: 0; " placeholder="原密码">
+                        </div>
+                    </div>
+                    <div class="row" style="height: 25px"></div>
+                    <div class="form-group">
+                        <label for="NewSerect" class="col-sm-1 control-label lead" style="font-size: 17px">新密码</label>
+                        <div class="col-sm-11">
+                            <input type="password" class="form-control" id="NewSerect" name="NewSerect"
+                                   style="border-width: 0; " placeholder="新密码">
+                        </div>
+                    </div>
+                    <div class="row" style="height: 25px"></div>
+                    <div class="form-group">
+                        <label for="ReNewSerect" class="col-sm-1 control-label lead" style="font-size: 17px">确认</label>
+                        <div class="col-sm-11">
+                            <input type="password" class="form-control" id="ReNewSerect" name="ReNewSerect"
+                                   style="border-width: 0; " placeholder="再次确认">
+                        </div>
+                    </div>
+                    <div class="row hide" id="SerectError1" style="margin-top: 35px;height: 25px">
+                        <p style="color: red;font-size: 17px;margin-left: 26px">原密码错误</p>
+                    </div>
+                    <div class="row hide" id="SerectError2" style="margin-top: 35px;height: 25px">
+                        <p style="color: red;font-size: 17px;margin-left: 26px">新密码不得为空</p>
+                    </div>
+                    <div class="row hide" id="SerectError3" style="margin-top: 35px;height: 25px">
+                        <p style="color: red;font-size: 17px;margin-left: 26px">新密码两次输入不一致</p>
+                    </div>
+                    <div class="row hide" id="SerectError4" style="margin-top: 35px;height: 25px">
+                        <p style="color: green;font-size: 17px;margin-left: 26px">修改成功</p>
+                    </div>
+                    <div class="row" style="height: 25px"></div>
+                    <div class="row">
+                        <button type="submit" class="btn btn-success" style="float: right; margin-right: 15px">修改
+                        </button>
+                        <a class="btn btn-danger" style="float: right; margin-right: 5px" href="/HomePage">返回</a>
+                    </div>
+                    <div class="row" style="height: 40px"></div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% end %}
+
+{% block script %}
+<script>
+    document.getElementById("a1").className = "container hide";
+    document.getElementById("ax").className = "jumbotron show";
+    document.getElementById("a2").className = "jumbotron hide";
+    document.getElementById("a3").className = "jumbotron hide";
+    document.getElementById("a4").className = "jumbotron hide";
+    document.getElementById("a5").className = "jumbotron show";
+    function PerInformation() {
+        document.getElementById("PerInformation").className = "row show";
+        document.getElementById("PerSerect").className = "row hide";
+        document.getElementById("Perli").className = "active";
+        document.getElementById("Serectli").className = "";
+    }
+    function PerSerect() {
+        document.getElementById("PerInformation").className = "row hide";
+        document.getElementById("PerSerect").className = "row show";
+        document.getElementById("Perli").className = "";
+        document.getElementById("Serectli").className = "active";
+    }
+</script>
+{% block SereError %}
+{% end %}
+{% end %}

@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>ACM训练管理平台</title>
+    <link rel="stylesheet" href="{{static_url("bs/css/bootstrap.css")}}">
+    <link rel="shortcut icon" href="{{static_url("image/favicon.ico")}}">
+    <link rel="bookmark" href="{{static_url("image/favicon.ico")}}">
+    <script src="{{static_url("bs/js/jquery.min.js")}}"></script>
+    <script src="{{static_url("bs/js/bootstrap.js")}}"></script>
+    <meta charset="UTF-8">
+    <style>
+        body{
+            background-image: url("{{static_url("image/back.jpg")}}");
+            background-size: 2100px;
+            height: 850px;
+        }
+        *{
+            font-family: 微软雅黑;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="nav nav-pills" style="background: transparent">
+    <!--<nav class="navbar navbar-default" style="background: transparent">-->
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#" style="color: #5bc0de; font-size: 60px;font-family: 'DIN Condensed';margin-top: 20px">ACM</a>
+            </div>
+            < class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <button type="button" class="btn btn-danger navbar-btn hide" style="margin-top: 20px; margin-left: 15px" data-toggle="modal" data-target="#register" id="Rg">注册</button>
+                    <button type="button" class="btn btn-success navbar-btn" style="margin-top: 20px; margin-right: 20px" data-toggle="modal" data-target="#enter" id="login">登录</button>
+                    <form id="register" class="modal fade" action="/register" method="post">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <div class="close" data-dismiss="modal">&times;</div>
+                                    <h3 style="text-align: center">注册</h3>
+                                </div>
+                                <div class="modal-body">
+                                    <form>
+                                        <div>
+                                            <h5 class="hidden" style="color: #3e8f3e" id="Success1">注册成功</h5>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="PersonID">账号</label>
+                                            <small id="RgError1" style="color: red" class="hidden">账号不能为空</small></label>
+                                            <small id="RgError2" style="color: red" class="hidden">账号已被注册</small></label>
+                                            <input type="PersonID" class="form-control" id="PersonID" placeholder="账号" name="Person_id">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="PersonName">姓名</label>
+                                            <input type="PersonName" class="form-control" id="PersonName" placeholder="姓名" name="Name">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="PersonGender">性别</label>
+                                            <select id="PersonGender" class="form-control input-group" name="Gender">
+                                                <option>男</option>
+                                                <option>女</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="PersonSchool">学校</label>
+                                            <select id="PersonSchool" class="form-control input-group" name="School">
+                                                {% for line in School %}
+                                                    <option>{{line['Name']}}</option>
+                                                {% end %}
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="PersonGrade">入学年份</label>
+                                            <select id="PersonGrade" class="form-control input-group" name="Grade">
+                                                <option>2019</option>
+                                                <option>2018</option>
+                                                <option>2017</option>
+                                                <option>2016</option>
+                                                <option>2015</option>
+                                                <option>2014</option>
+                                                <option>2013</option>
+                                                <option>2012</option>
+                                                <option>2011</option>
+                                                <option>2010</option>
+                                                <option>2009</option>
+                                                <option>2008</option>
+                                                <option>2007</option>
+                                                <option>2006</option>
+                                                <option>2005</option>
+                                                <option>2004</option>
+                                                <option>2003</option>
+                                                <option>2002</option>
+                                                <option>2001</option>
+                                                <option>2000</option>
+                                                <option>1999</option>
+                                                <option>1998</option>
+                                                <option>1997</option>
+                                                <option>1996</option>
+                                                <option>1995</option>
+                                                <option>1994</option>
+                                                <option>1993</option>
+                                                <option>1992</option>
+                                                <option>1991</option>
+                                                <option>1990</option>
+                                                <option>1989</option>
+                                                <option>1988</option>
+                                                <option>1987</option>
+                                                <option>1986</option>
+                                                <option>1985</option>
+                                                <option>1984</option>
+                                                <option>1983</option>
+                                                <option>1982</option>
+                                                <option>1981</option>
+                                                <option>1980</option>
+                                                <option>1979</option>
+                                                <option>1978</option>
+
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="PersonMajor">专业</label>
+                                            <input type="PersonMajor" class="form-control" id="PersonMajor" placeholder="专业" name="Major">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="PersonClass">班级</label>
+                                            <input type="PersonClass" class="form-control" id="PersonClass" placeholder="班级" name="Class">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="PersonLab">所属实验室</label>
+                                            <select id="PersonLab" class="form-control input-group" name="Lab">
+                                                {% for line in Lab%}
+                                                    <option>{{line['Name']}}</option>
+                                                {% end %}
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="PersonSerect">密码</label>
+                                            <small id="RgError3" style="color: red" class="hidden">密码不能为空</small></label>
+                                            <input type="password" class="form-control" id="PersonSerect" placeholder="密码" name="Serect">
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button class="btn btn-danger" data-dismiss="modal">取消</button>
+                                    <button type="submit" class="btn btn-primary" href="#">提交</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <form id="enter" class="modal fade" action="/login" method="post">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <div class="close" data-dismiss="modal">&times</div>
+                                    <h3 style="text-align: center">登录</h3>
+                                </div>
+                                <div class="modal-body">
+                                    <form>
+                                        <div class="form-group">
+                                            <label for="InputAccount">账号
+                                            <small id="LogError" style="color: red" class="hidden">账号或密码错误</small></label>
+                                            <input type="text" class="form-control" id="InputAccount" name="InputAccount" placeholder="账号">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="InputPassword">密码</label>
+                                            <input type="password" class="form-control" id="InputPassword" name="InputPassword" placeholder="密码">
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button class="btn btn-danger" data-dismiss="modal">取消</button>
+                                    <button type="submit" class="btn btn-primary" href="#">登录</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="row" style="height: 100px"></div>
+        <div class="row" style="height: 100px"></div>
+        <div class="row" style="height: 100px">
+            <div class="col-md-12" style="text-align: center">
+                <font size="20" style="color: #9acfea">ACM训练管理平台</font>
+                <hr style="filter: progid:dximagetransform.microsoft.shadow(color:#987cb9,direction:145,strength:15)" width="80%" color="#987cb9" size=1>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+{% block main %}
+{% end %}
