@@ -1,6 +1,6 @@
 # ACM-PLATFORM
-一个小型网站用于ACM训练题库、比赛、队伍、完成题目、题解的管理。
+A small website is used for the management of ACM training problem library, competitions, teams, completed problems with solution.
 
-# 如何运行
-1. 安装项目支持库（Tornado、pymsql、python 3.0+）
-2. 将sql数据导入mysql中，在config.py中修改mysql连接参数，运行server.py即可。
+# How to Run
+1. Install support libraries needed for this project (Tornado, pymsql, python 3.0+)
+2. Import the sql data into mysql, modify the mysql connection parameters in config.py, and run server.py.
