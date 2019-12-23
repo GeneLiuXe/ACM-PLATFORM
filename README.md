@@ -21,4 +21,4 @@ A small website is used for the management of ACM training problem library, comp
 ![Image of Web](https://github.com/GeneLiuXe/ACM-PLATFORM/blob/master/Figures/User.png)
 
 # More Details
-If you want to know more information, you could consult for the pdf in this project.
+If you want to know more information, you could consult for the "ACM-PLATFORM Report.pdf" in this project.
