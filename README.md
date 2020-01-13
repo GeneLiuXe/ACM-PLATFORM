@@ -26,7 +26,7 @@ python3 -m pip install PyMySQL
 > tornado
 
 ```shell
-sudo apt-get install python3-	tornado
+sudo apt-get install python3-tornado
 ```
 
 > mysql
@@ -46,7 +46,7 @@ Create a MySQL remote user.
 ```shell
 mysql -u root -p
 CREATE USER 'root'@'%' IDENTIFIED BY 'password';
-GRANT ALL PRIVILEGES ON * . * TO 'root'@'%';
+GRANT ALL PRIVILEGES ON *.* TO 'root'@'%';
 FLUSH PRIVILEGES;
 ```
 Enable MySQL remote access.
