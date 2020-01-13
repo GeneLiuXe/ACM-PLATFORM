@@ -5,7 +5,7 @@ A small website is used for the management of ACM training problem library, comp
 1. Install support libraries needed for this project (Tornado 4.5.3+, pymsql 0.9.2+, python 3.7+, mysql 8.0.16+)
 2. Import the sql data into mysql, modify the mysql connection parameters in config.py, and run server.py.
 
-# Installation
+# Details of Installation
 
 Taking Ubuntu 18.04 for example.
 
