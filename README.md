@@ -59,7 +59,7 @@ sudo systemctl restart mysql.service
 
 [Reference link](https://www.fosstechnix.com/install-mysql-8-on-ubuntu/)
 
-> Running
+> Run
 
 Install Screen and run the project in it.
 
