@@ -59,6 +59,16 @@ sudo systemctl restart mysql.service
 
 [Reference link](https://www.fosstechnix.com/install-mysql-8-on-ubuntu/)
 
+> Running
+
+Install Screen and run the project in it.
+
+```shell
+sudo apt-get install screen
+screen
+python3 server.py
+```
+
 # Web Portal
 ![Image of Web](https://github.com/GeneLiuXe/ACM-PLATFORM/blob/master/Figures/Web%20portal.png)
 
