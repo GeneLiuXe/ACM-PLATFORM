@@ -69,20 +69,55 @@ screen
 python3 server.py
 ```
 
-# Web Portal
+# Back Up
+
+> cron
+
+```shell
+crontab -l # check all tasks
+crontab -e # add new task
+
+/etc/init.d/cron stop
+/etc/init.d/cron start
+/etc/init.d/cron restart
+/etc/init.d/cron status
+```
+we need to use `crontab -e` to add the task below to back up mysql every two hours.
+
+```shell
+54 */2 * * * /root/mysql_backup_script.sh
+```
+
+> .sh file
+
+This file contains the config and the input of command line, we could use it to back up the mysql.
+
+> /etc/mysql/mysql.conf.d
+
+And we add the specific configs in the "/etc/mysql/mysql.conf.d".
+
+```shell
+[mysqldump]
+user=root
+password=passwd
+```
+
+# Website details display
+
+## Web Portal
 ![Image of Web](https://github.com/GeneLiuXe/ACM-PLATFORM/blob/master/Figures/Web%20portal.png)
 
-# Main Page
+## Main Page
 ![Image of Web](https://github.com/GeneLiuXe/ACM-PLATFORM/blob/master/Figures/Main%20Page.png)
 
-# Problem Library
+## Problem Library
 ![Image of Web](https://github.com/GeneLiuXe/ACM-PLATFORM/blob/master/Figures/Problem%20Library.png)
 
-# Contest
+## Contest
 ![Image of Web](https://github.com/GeneLiuXe/ACM-PLATFORM/blob/master/Figures/Contest.png)
 
-# User
+## User
 ![Image of Web](https://github.com/GeneLiuXe/ACM-PLATFORM/blob/master/Figures/User.png)
 
-# More Details
+## More Details
 If you want to know more information, you could consult for the "ACM-PLATFORM Report.pdf" in this project.
